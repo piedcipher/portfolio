@@ -1,10 +1,10 @@
 name: tirth_today
 description: "my portfolio site"
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
-  sdk: ^3.5.1
+  sdk: ^3.8.1
 
 dependencies:
   flutter:
@@ -16,7 +16,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints:
 
 flutter:
   uses-material-design: true
