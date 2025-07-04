@@ -2,15 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:video_player/video_player.dart';
 
-enum Socials {
-  github,
-  stackOverflow,
-  medium,
-  twitter,
-  linkedIn,
-  speakerDeck,
-}
+enum Socials { github, stackOverflow, medium, twitter, linkedIn, speakerDeck }
 
 extension SocialsExtension on Socials {
   void launcher() async {
@@ -91,6 +85,15 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const ArtVideoPlayer()),
+          );
+        },
+        label: const Text('View Art'),
+        icon: const Icon(Icons.brush),
+      ),
       backgroundColor: AppColors.noteBookWhite,
       body: Center(
         child: Stack(
@@ -100,30 +103,22 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 const SizedBox(width: 60),
                 DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: AppColors.notebookRed,
-                  ),
+                  decoration: BoxDecoration(color: AppColors.notebookRed),
                   child: const SizedBox(width: 1.5, height: double.infinity),
                 ),
                 const SizedBox(width: 5),
                 DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: AppColors.notebookRed,
-                  ),
+                  decoration: BoxDecoration(color: AppColors.notebookRed),
                   child: const SizedBox(width: 1.5, height: double.infinity),
                 ),
                 const Spacer(),
                 DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: AppColors.notebookRed,
-                  ),
+                  decoration: BoxDecoration(color: AppColors.notebookRed),
                   child: const SizedBox(width: 1.5, height: double.infinity),
                 ),
                 const SizedBox(width: 5),
                 DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: AppColors.notebookRed,
-                  ),
+                  decoration: BoxDecoration(color: AppColors.notebookRed),
                   child: const SizedBox(width: 1.5, height: double.infinity),
                 ),
                 const SizedBox(width: 60),
@@ -160,30 +155,22 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 const SizedBox(height: 60),
                 DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: AppColors.notebookRed,
-                  ),
+                  decoration: BoxDecoration(color: AppColors.notebookRed),
                   child: const SizedBox(height: 1.5, width: double.infinity),
                 ),
                 const SizedBox(height: 5),
                 DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: AppColors.notebookRed,
-                  ),
+                  decoration: BoxDecoration(color: AppColors.notebookRed),
                   child: const SizedBox(height: 1.5, width: double.infinity),
                 ),
                 const Spacer(),
                 DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: AppColors.notebookRed,
-                  ),
+                  decoration: BoxDecoration(color: AppColors.notebookRed),
                   child: const SizedBox(height: 1.5, width: double.infinity),
                 ),
                 const SizedBox(height: 5),
                 DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: AppColors.notebookRed,
-                  ),
+                  decoration: BoxDecoration(color: AppColors.notebookRed),
                   child: const SizedBox(height: 1.5, width: double.infinity),
                 ),
                 const SizedBox(height: 60),
@@ -281,6 +268,60 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ArtVideoPlayer extends StatefulWidget {
+  const ArtVideoPlayer({super.key});
+
+  @override
+  State<ArtVideoPlayer> createState() => _ArtVideoPlayerState();
+}
+
+class _ArtVideoPlayerState extends State<ArtVideoPlayer> {
+  late VideoPlayerController _controller;
+  Future<void>? _initializeVideoPlayerFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.asset('assets/art.mp4');
+    _initializeVideoPlayerFuture = _controller.initialize().then((_) {
+      _controller.play();
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: FutureBuilder(
+          future: _initializeVideoPlayerFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    VideoPlayer(_controller),
+                    VideoProgressIndicator(_controller, allowScrubbing: true),
+                  ],
+                ),
+              );
+            }
+            return const Center(child: CircularProgressIndicator());
+          },
         ),
       ),
     );

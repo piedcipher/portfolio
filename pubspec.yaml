@@ -12,6 +12,7 @@ dependencies:
   url_launcher:
   font_awesome_flutter:
   google_fonts:
+  video_player:
 
 dev_dependencies:
   flutter_test:
@@ -20,3 +21,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - 'assets/'
