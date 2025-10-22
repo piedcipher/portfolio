@@ -13,7 +13,7 @@ dependencies:
   font_awesome_flutter:
   google_fonts:
   video_player:
-  page_flip:
+  page_curl_effect:
 
 dev_dependencies:
   flutter_test:
