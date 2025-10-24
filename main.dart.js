@@ -72547,7 +72547,7 @@ $0(){var s=0,r=A.q(t.H),q
 var $async$$0=A.m(function(a,b){if(a===1)return A.n(b,r)
 for(;;)switch(s){case 0:q=A.an8()
 s=2
-return A.r(q.Fz("audio/page_flip.mp3"),$async$$0)
+return A.r(q.Fz("page_flip.mp3"),$async$$0)
 case 2:s=3
 return A.r(q.bJ(),$async$$0)
 case 3:s=4
@@ -72560,7 +72560,7 @@ $0(){var s=0,r=A.q(t.H),q
 var $async$$0=A.m(function(a,b){if(a===1)return A.n(b,r)
 for(;;)switch(s){case 0:q=A.an8()
 s=2
-return A.r(q.Fz("audio/page_flip.mp3"),$async$$0)
+return A.r(q.Fz("page_flip.mp3"),$async$$0)
 case 2:s=3
 return A.r(q.bJ(),$async$$0)
 case 3:s=4
