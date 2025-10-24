@@ -165,8 +165,8 @@ class StickyNoteCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               if (companyLogos[companyName] != null) ...[
                 ...companyLogos[companyName]!.map(
