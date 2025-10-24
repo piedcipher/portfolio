@@ -14,6 +14,7 @@ dependencies:
   google_fonts:
   video_player:
   page_curl_effect:
+  just_audio:
 
 dev_dependencies:
   flutter_test:

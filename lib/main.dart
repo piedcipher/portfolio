@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_curl_effect/page_curl_effect.dart';
 import 'package:tirth_today/pages/art_video_player_page.dart';
@@ -37,6 +38,18 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return PageCurlEffect(
+      onForwardComplete: () async {
+        final audioPlayer = AudioPlayer();
+        await audioPlayer.setUrl('assets/page_flip.mp3');
+        await audioPlayer.play();
+        await audioPlayer.stop();
+      },
+      onBackwardComplete: () async {
+        final audioPlayer = AudioPlayer();
+        await audioPlayer.setUrl('assets/page_flip.mp3');
+        await audioPlayer.play();
+        await audioPlayer.stop();
+      },
       pages: [HomePage(), WorkExperiencePage(), ArtVideoPlayer()],
       pageCurlController: PageCurlController(
         Size(

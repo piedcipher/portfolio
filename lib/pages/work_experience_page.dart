@@ -23,7 +23,7 @@ class WorkExperiencePage extends StatelessWidget {
         "company": "Multipl Fintech",
         "duration": "Jan 2023 - April 2025",
         "description":
-            "Built and maintained core features for Multipl (https://multipl.xyz), a fintech product in the 'Save Now, Buy Later' and spendvesting category. Led campaigns and feature launches that improved user engagement and long-term savings outcomes.",
+            "Built and maintained core features for Multipl (multipl.xyz), a fintech product in the 'Save Now, Buy Later' and spendvesting category. Led campaigns and feature launches that improved user engagement and long-term savings outcomes.",
       },
       {
         "role": "Software Engineer",
@@ -116,17 +116,26 @@ class StickyNoteCard extends StatelessWidget {
     "Multipl Fintech": "https://multipl.in",
     "SculptSoft": "https://sculptsoft.com",
     "Stasis Labs": "https://www.linkedin.com/company/stasis-labs",
-    "Aubergine Solutions": "https://auberginesolutions.com",
+    "Aubergine Solutions": "https://aubergine.co",
+  };
+
+  final Map<String, List<String>> companyLogos = {
+    "Nevercode HQ / Codemagic": [
+      "https://avatars.githubusercontent.com/u/31367575?s=280&v=4",
+    ],
+    "Multipl Fintech": [
+      "https://framerusercontent.com/images/jcac5XGXYqH10hoPF84nFxvGZh4.png",
+    ],
   };
 
   @override
   Widget build(BuildContext context) {
     final stickyColors = [
-      Colors.amber.shade100,
-      Colors.greenAccent.shade100,
-      Colors.pink.shade100,
-      Colors.cyan.shade100,
       Colors.deepOrange.shade100,
+      Colors.amber.shade100,
+      Colors.green.shade100,
+      Colors.indigo.shade100,
+      Colors.purple.shade100,
     ];
 
     final color = stickyColors[colorIndex % stickyColors.length];
@@ -134,7 +143,7 @@ class StickyNoteCard extends StatelessWidget {
     final companyUrl = companyUrls[companyName];
 
     return Container(
-      width: MediaQuery.of(context).size.width * 0.7,
+      width: MediaQuery.of(context).size.width * 0.9,
       margin: const EdgeInsets.symmetric(vertical: 12),
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
@@ -156,35 +165,46 @@ class StickyNoteCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: companyName,
-                  style: GoogleFonts.pangolin().copyWith(
-                    fontSize: 16,
-                    color: AppColors.handwritingBlue,
-                    decoration: TextDecoration.underline,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.2,
-                  ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () async {
-                      if (companyUrl != null &&
-                          await canLaunchUrl(Uri.parse(companyUrl))) {
-                        await launchUrl(Uri.parse(companyUrl));
-                      }
-                    },
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (companyLogos[companyName] != null) ...[
+                ...companyLogos[companyName]!.map(
+                  (e) => Image.network(e, width: 24, height: 24),
                 ),
-                TextSpan(
-                  text: " • ${subtitle.split(" • ")[1]}",
-                  style: GoogleFonts.pangolin().copyWith(
-                    fontSize: 16,
-                    color: AppColors.handwritingBlue,
-                  ),
-                ),
+                const SizedBox(width: 4),
               ],
-            ),
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: companyName,
+                      style: GoogleFonts.pangolin().copyWith(
+                        fontSize: 16,
+                        color: AppColors.handwritingBlue,
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () async {
+                          if (companyUrl != null &&
+                              await canLaunchUrl(Uri.parse(companyUrl))) {
+                            await launchUrl(Uri.parse(companyUrl));
+                          }
+                        },
+                    ),
+                    TextSpan(
+                      text: " • ${subtitle.split(" • ")[1]}",
+                      style: GoogleFonts.pangolin().copyWith(
+                        fontSize: 16,
+                        color: AppColors.handwritingBlue,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 10),
           Text(
