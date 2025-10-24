@@ -40,13 +40,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return PageCurlEffect(
       onForwardComplete: () async {
         final audioPlayer = AudioPlayer();
-        await audioPlayer.setUrl('page_flip.mp3');
+        await audioPlayer.setAsset('assets/page_flip.mp3');
         await audioPlayer.play();
         await audioPlayer.stop();
       },
       onBackwardComplete: () async {
         final audioPlayer = AudioPlayer();
-        await audioPlayer.setUrl('page_flip.mp3');
+        await audioPlayer.setAsset('assets/page_flip.mp3');
         await audioPlayer.play();
         await audioPlayer.stop();
       },
