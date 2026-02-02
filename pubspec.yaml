@@ -15,6 +15,7 @@ dependencies:
   video_player:
   page_curl_effect:
   just_audio:
+  get_it:
 
 dev_dependencies:
   flutter_test:
