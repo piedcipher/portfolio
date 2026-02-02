@@ -49,7 +49,7 @@ class WorkExperiencePage extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: AppColors.noteBookWhite,
+      backgroundColor: AppColors.notebookWhite,
       body: Stack(
         children: [
           const NotebookLayout(),

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: Data.name,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.noteBookWhite),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.notebookWhite),
         textTheme: GoogleFonts.pangolinTextTheme(),
       ),
       home: const MyHomePage(),

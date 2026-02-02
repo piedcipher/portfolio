@@ -62,7 +62,7 @@ abstract class Data {
 }
 
 abstract class AppColors {
-  static const noteBookWhite = Color(0xFFF3EEFB);
+  static const notebookWhite = Color(0xFFF3EEFB);
   static final notebookRed = Colors.redAccent[100];
   static final notebookBlack = Colors.black26.withAlpha(30);
   static const handwritingBlue = Color(0xFF0039A6);

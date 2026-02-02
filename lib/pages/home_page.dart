@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.noteBookWhite,
+      backgroundColor: AppColors.notebookWhite,
       body: Center(
         child: Stack(
           alignment: Alignment.center,
