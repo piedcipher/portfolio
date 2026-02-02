@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tirth_today/layouts/notebook_layout.dart';
-import 'package:tirth_today/pages/art_video_player_page.dart';
 import 'package:tirth_today/utils/constants.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,15 +10,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.noteBookWhite,
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () async {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const ArtVideoPlayer()),
-          );
-        },
-        label: const Text('View Art'),
-        icon: const Icon(Icons.brush),
-      ),
       body: Center(
         child: Stack(
           alignment: Alignment.center,
