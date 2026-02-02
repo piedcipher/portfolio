@@ -76,7 +76,7 @@ class NotebookLayout extends StatelessWidget {
                     onPressed: () async {
                       launchUrl(
                         Uri.parse(
-                          'https://github.com/piedcipher/tirth.today/blob/main/assets/Tirth-Patel-Resume.pdf',
+                          'https://raw.githubusercontent.com/piedcipher/tirth.today/33c9470409bfba5fdcbbec442edc817c617d6630/assets/Tirth-Patel-Resume.pdf',
                         ),
                       );
                     },
