@@ -22718,7 +22718,7 @@ case 5:return"Speaker Deck"
 case 6:return"Resume"
 case 7:return"Art"
 case 8:return"Flip"
-case 9:return"Photography - #TeamPixel"}},
+case 9:return"Photography #TeamPixel"}},
 fy:function fy(a,b){this.a=a
 this.b=b},
 a__:function a__(a,b){this.a=a
