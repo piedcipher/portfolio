@@ -73177,7 +73177,7 @@ $S:489}
 A.a2y.prototype={
 $0(){var s=0,r=A.q(t.H)
 var $async$$0=A.r(function(a,b){if(a===1)return A.n(b,r)
-for(;;)switch(s){case 0:A.Sb(A.d9("https://github.com/piedcipher/tirth.today/blob/main/assets/Tirth-Patel-Resume.pdf",0,null))
+for(;;)switch(s){case 0:A.Sb(A.d9("https://raw.githubusercontent.com/piedcipher/tirth.today/33c9470409bfba5fdcbbec442edc817c617d6630/assets/Tirth-Patel-Resume.pdf",0,null))
 return A.o(null,r)}})
 return A.p($async$$0,r)},
 $S:9}
