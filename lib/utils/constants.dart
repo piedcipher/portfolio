@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-enum Socials { github, stackOverflow, medium, twitter, linkedIn, speakerDeck }
+enum Socials {
+  github,
+  stackOverflow,
+  medium,
+  twitter,
+  linkedIn,
+  speakerDeck,
+  resume,
+  art,
+  flip,
+}
 
 enum Pages { home, workExperience, artVideoPlayer }
 
@@ -27,6 +37,12 @@ extension SocialsExtension on Socials {
         return 'LinkedIn';
       case Socials.speakerDeck:
         return 'Speaker Deck';
+      case Socials.resume:
+        return 'Resume';
+      case Socials.art:
+        return 'Art';
+      case Socials.flip:
+        return 'Flip';
     }
   }
 }

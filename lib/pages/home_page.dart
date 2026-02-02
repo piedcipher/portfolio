@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_it/get_it.dart';
+import 'package:page_curl_effect/page_curl_effect.dart';
 import 'package:tirth_today/layouts/notebook_layout.dart';
+import 'package:tirth_today/pages/art_video_player_page.dart';
 import 'package:tirth_today/utils/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -100,6 +104,48 @@ class HomePage extends StatelessWidget {
                       icon: const Icon(FontAwesomeIcons.speakerDeck),
                       onPressed: () {
                         Socials.speakerDeck.launcher();
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                OverflowBar(
+                  spacing: 8,
+                  overflowSpacing: 8,
+                  children: [
+                    IconButton(
+                      color: AppColors.handwritingBlue,
+                      tooltip: Socials.resume.tooltip,
+                      icon: const Icon(FontAwesomeIcons.file),
+                      onPressed: () {
+                        launchUrl(
+                          Uri.parse(
+                            'https://tirth.today/assets/assets/Tirth-Patel-Resume.pdf',
+                          ),
+                        );
+                      },
+                    ),
+                    IconButton(
+                      color: AppColors.handwritingBlue,
+                      tooltip: Socials.art.tooltip,
+                      icon: const Icon(FontAwesomeIcons.paintbrush),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const ArtVideoPlayer(),
+                          ),
+                        );
+                      },
+                    ),
+                    IconButton(
+                      color: AppColors.handwritingBlue,
+                      tooltip: Socials.flip.tooltip,
+                      icon: const Icon(FontAwesomeIcons.turnUp),
+                      onPressed: () {
+                        GetIt.I<PageCurlController>().pageCurlIndex =
+                            GetIt.I<PageCurlController>().getNextPageIndex() ??
+                            0;
+                        GetIt.I<VoidCallback>()();
                       },
                     ),
                   ],
