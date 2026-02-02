@@ -11,6 +11,7 @@ enum Socials {
   resume,
   art,
   flip,
+  teampixel,
 }
 
 enum Pages { home, workExperience, artVideoPlayer }
@@ -43,6 +44,8 @@ extension SocialsExtension on Socials {
         return 'Art';
       case Socials.flip:
         return 'Flip';
+      case Socials.teampixel:
+        return 'Photography - #TeamPixel';
     }
   }
 }
@@ -54,6 +57,8 @@ const _socials = {
   Socials.twitter: 'https://x.com/piedcipher',
   Socials.linkedIn: 'https://linkedin.com/in/tirth-patel',
   Socials.speakerDeck: 'https://speakerdeck.com/piedcipher',
+  Socials.teampixel:
+      'https://x.com/search?q=from%3Apiedcipher%20%23teampixel&src=typed_query',
 };
 
 abstract class Data {

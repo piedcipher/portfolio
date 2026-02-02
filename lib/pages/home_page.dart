@@ -74,13 +74,6 @@ class HomePage extends StatelessWidget {
                         Socials.medium.launcher();
                       },
                     ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                OverflowBar(
-                  spacing: 8,
-                  overflowSpacing: 8,
-                  children: [
                     IconButton(
                       color: AppColors.handwritingBlue,
                       tooltip: Socials.twitter.tooltip,
@@ -97,6 +90,13 @@ class HomePage extends StatelessWidget {
                         Socials.linkedIn.launcher();
                       },
                     ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                OverflowBar(
+                  spacing: 8,
+                  overflowSpacing: 8,
+                  children: [
                     IconButton(
                       color: AppColors.handwritingBlue,
                       tooltip: Socials.speakerDeck.tooltip,
@@ -105,13 +105,6 @@ class HomePage extends StatelessWidget {
                         Socials.speakerDeck.launcher();
                       },
                     ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                OverflowBar(
-                  spacing: 8,
-                  overflowSpacing: 8,
-                  children: [
                     IconButton(
                       color: AppColors.handwritingBlue,
                       tooltip: Socials.resume.tooltip,
@@ -146,6 +139,14 @@ class HomePage extends StatelessWidget {
                             builder: (context) => const WorkExperiencePage(),
                           ),
                         );
+                      },
+                    ),
+                    IconButton(
+                      color: AppColors.handwritingBlue,
+                      tooltip: Socials.teampixel.tooltip,
+                      icon: const Icon(FontAwesomeIcons.cameraRetro),
+                      onPressed: () {
+                        Socials.teampixel.launcher();
                       },
                     ),
                   ],
