@@ -1,6 +1,7 @@
 # tirth.today
 my portfolio site
 
-| | |
-| --- | --- |
-| ![1000074656](https://github.com/user-attachments/assets/726d2daf-3064-4dec-95d0-0ec9c37cf12f) | ![1000074657](https://github.com/user-attachments/assets/a15521d7-a498-451e-bc67-a4edb1028e18) |
+![](https://github.com/user-attachments/assets/d9387daa-32fd-4300-a52a-3952d40a972f)
+
+![](https://github.com/user-attachments/assets/9471a3b7-8fbd-4869-9e58-12838b56239e)
+
