@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get_it/get_it.dart';
-import 'package:page_curl_effect/page_curl_effect.dart';
 import 'package:tirth_today/layouts/notebook_layout.dart';
 import 'package:tirth_today/pages/art_video_player_page.dart';
+import 'package:tirth_today/pages/work_experience_page.dart';
 import 'package:tirth_today/utils/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -142,10 +141,11 @@ class HomePage extends StatelessWidget {
                       tooltip: Socials.flip.tooltip,
                       icon: const Icon(FontAwesomeIcons.turnUp),
                       onPressed: () {
-                        GetIt.I<PageCurlController>().pageCurlIndex =
-                            GetIt.I<PageCurlController>().getNextPageIndex() ??
-                            0;
-                        GetIt.I<VoidCallback>()();
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const WorkExperiencePage(),
+                          ),
+                        );
                       },
                     ),
                   ],

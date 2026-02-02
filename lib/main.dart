@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_curl_effect/page_curl_effect.dart';
@@ -36,27 +35,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late final PageCurlController pageCurlController;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    pageCurlController = PageCurlController(
-      Size(
-        MediaQuery.of(context).size.width,
-        MediaQuery.of(context).size.height,
-      ),
-      pageCurlIndex: Pages.home.index,
-      numberOfPage: Pages.values.length,
-    );
-    GetIt.I.registerSingleton<PageCurlController>(pageCurlController);
-    GetIt.I.registerSingleton<VoidCallback>(refresh);
-  }
-
-  void refresh() {
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return PageCurlEffect(
@@ -73,7 +51,14 @@ class _MyHomePageState extends State<MyHomePage> {
         await audioPlayer.stop();
       },
       pages: [HomePage(), WorkExperiencePage(), ArtVideoPlayer()],
-      pageCurlController: pageCurlController,
+      pageCurlController: PageCurlController(
+        Size(
+          MediaQuery.of(context).size.width,
+          MediaQuery.of(context).size.height,
+        ),
+        pageCurlIndex: Pages.home.index,
+        numberOfPage: Pages.values.length,
+      ),
     );
   }
 }
