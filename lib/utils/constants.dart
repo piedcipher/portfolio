@@ -45,7 +45,7 @@ extension SocialsExtension on Socials {
       case Socials.flip:
         return 'Flip';
       case Socials.teampixel:
-        return 'Photography - #TeamPixel';
+        return 'Photography #TeamPixel';
     }
   }
 }
