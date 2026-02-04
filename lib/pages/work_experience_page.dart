@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_flip/page_flip.dart';
 import 'package:tirth_today/layouts/notebook_layout.dart';
 import 'package:tirth_today/utils/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -50,6 +52,16 @@ class WorkExperiencePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.notebookWhite,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          GetIt.I
+              .get<GlobalKey<PageFlipWidgetState>>()
+              .currentState
+              ?.nextPage();
+        },
+        label: Text('Next Page'),
+        tooltip: 'Page can be swiped as well',
+      ),
       body: Stack(
         children: [
           const NotebookLayout(),

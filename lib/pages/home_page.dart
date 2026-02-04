@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_it/get_it.dart';
+import 'package:page_flip/page_flip.dart';
 import 'package:tirth_today/layouts/notebook_layout.dart';
 import 'package:tirth_today/pages/art_video_player_page.dart';
-import 'package:tirth_today/pages/work_experience_page.dart';
 import 'package:tirth_today/utils/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -12,6 +13,16 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          GetIt.I
+              .get<GlobalKey<PageFlipWidgetState>>()
+              .currentState
+              ?.nextPage();
+        },
+        label: Text('Next Page'),
+        tooltip: 'Page can be swiped as well',
+      ),
       backgroundColor: AppColors.notebookWhite,
       body: Center(
         child: Stack(
@@ -134,11 +145,10 @@ class HomePage extends StatelessWidget {
                       tooltip: Socials.flip.tooltip,
                       icon: const Icon(FontAwesomeIcons.turnUp),
                       onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const WorkExperiencePage(),
-                          ),
-                        );
+                        GetIt.I
+                            .get<GlobalKey<PageFlipWidgetState>>()
+                            .currentState
+                            ?.nextPage();
                       },
                     ),
                     IconButton(

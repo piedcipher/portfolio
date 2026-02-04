@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
+import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_curl_effect/page_curl_effect.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:page_flip/page_flip.dart';
 import 'package:tirth_today/pages/art_video_player_page.dart';
 import 'package:tirth_today/pages/home_page.dart';
 import 'package:tirth_today/pages/work_experience_page.dart';
@@ -21,6 +22,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.notebookWhite),
         textTheme: GoogleFonts.pangolinTextTheme(),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: AppColors.handwritingBlue,
+          foregroundColor: Colors.white,
+        ),
       ),
       home: const MyHomePage(),
     );
@@ -35,30 +40,37 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final _controller = GlobalKey<PageFlipWidgetState>();
+
+  @override
+  void initState() {
+    super.initState();
+    if (GetIt.I.isRegistered<GlobalKey<PageFlipWidgetState>>()) {
+      GetIt.I.unregister<GlobalKey<PageFlipWidgetState>>();
+    }
+    GetIt.I.registerSingleton<GlobalKey<PageFlipWidgetState>>(_controller);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return PageCurlEffect(
-      onForwardComplete: () async {
+    return PageFlipWidget(
+      key: _controller,
+      backgroundColor: AppColors.notebookWhite,
+      onFlipStart: () async {
         final audioPlayer = AudioPlayer();
         await audioPlayer.setAsset('assets/page_flip.mp3');
         await audioPlayer.play();
         await audioPlayer.stop();
       },
-      onBackwardComplete: () async {
-        final audioPlayer = AudioPlayer();
-        await audioPlayer.setAsset('assets/page_flip.mp3');
-        await audioPlayer.play();
-        await audioPlayer.stop();
-      },
-      pages: [HomePage(), WorkExperiencePage(), ArtVideoPlayer()],
-      pageCurlController: PageCurlController(
-        Size(
-          MediaQuery.of(context).size.width,
-          MediaQuery.of(context).size.height,
-        ),
-        pageCurlIndex: Pages.home.index,
-        numberOfPage: Pages.values.length,
-      ),
+      lastPage: ArtVideoPlayer(),
+      children: <Widget>[
+        for (var i = 0; i < Pages.values.length; i++)
+          switch (Pages.values[i]) {
+            Pages.home => const HomePage(),
+            Pages.workExperience => const WorkExperiencePage(),
+            _ => const ArtVideoPlayer(),
+          },
+      ],
     );
   }
 }

@@ -1,10 +1,10 @@
 name: tirth_today
 description: "my portfolio site"
 publish_to: 'none'
-version: 1.0.0+2
+version: 1.0.0+3
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.12.0-109.0.dev
 
 dependencies:
   flutter:
@@ -13,8 +13,9 @@ dependencies:
   font_awesome_flutter:
   google_fonts:
   video_player:
-  page_curl_effect:
+  page_flip:
   just_audio:
+  get_it:
 
 dev_dependencies:
   flutter_test:
