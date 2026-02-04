@@ -5,7 +5,6 @@ import 'package:page_flip/page_flip.dart';
 import 'package:tirth_today/layouts/notebook_layout.dart';
 import 'package:tirth_today/pages/art_video_player_page.dart';
 import 'package:tirth_today/utils/constants.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
