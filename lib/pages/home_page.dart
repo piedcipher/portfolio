@@ -121,11 +121,7 @@ class HomePage extends StatelessWidget {
                       tooltip: Socials.resume.tooltip,
                       icon: const Icon(FontAwesomeIcons.file),
                       onPressed: () {
-                        launchUrl(
-                          Uri.parse(
-                            'https://tirth.today/assets/assets/Tirth-Patel-Resume.pdf',
-                          ),
-                        );
+                        Socials.resume.launcher();
                       },
                     ),
                     IconButton(
