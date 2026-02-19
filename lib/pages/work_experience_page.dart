@@ -14,9 +14,16 @@ class WorkExperiencePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final experiences = [
       {
+        "role": "Developer Support Engineer",
+        "company": "Nevercode HQ / Codemagic",
+        "duration": "Feb 2026 - Current",
+        "description":
+            "Supporting developers using Codemagic's CI/CD platform for Flutter and mobile apps by triaging complex build and deployment issues across Android, iOS, and web pipelines. Reproduce failures, analyze logs, debug environment and configuration problems, and collaborate with engineering to drive product improvements that enhance build reliability and developer experience.",
+      },
+      {
         "role": "Open Source Software Engineer",
         "company": "Nevercode HQ / Codemagic",
-        "duration": "May 2025 - Current",
+        "duration": "May 2025 - Jan 2026",
         "description":
             "Collaborating with the Flutter team as part of Codemagic's Frontline Triage initiative. I triage and bisect issues for the flutter/flutter (SDK) repository, document findings, and occasionally raise PRs to help improve the developer experience.",
       },
@@ -144,6 +151,7 @@ class StickyNoteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final stickyColors = [
       Colors.deepOrange.shade100,
+      Colors.blue.shade100,
       Colors.amber.shade100,
       Colors.green.shade100,
       Colors.indigo.shade100,
