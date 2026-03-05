@@ -18,7 +18,7 @@ class WorkExperiencePage extends StatelessWidget {
         "company": "Nevercode HQ / Codemagic",
         "duration": "Feb 2026 - Current",
         "description":
-            "Supporting developers using Codemagic's CI/CD platform for Flutter and mobile apps by triaging complex build and deployment issues across Android, iOS, and web pipelines. Reproduce failures, analyze logs, debug environment and configuration problems, and collaborate with engineering to drive product improvements that enhance build reliability and developer experience.",
+            "Supporting developers using Codemagic's CI/CD platform for Flutter and mobile apps by triaging complex build and deployment issues across Mobile Dev pipelines. Reproduce failures, analyze logs, debug environment and configuration problems, and collaborate with engineering to drive product improvements that enhance build reliability and developer experience.",
       },
       {
         "role": "Open Source Software Engineer",
