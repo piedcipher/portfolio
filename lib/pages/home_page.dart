@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
                     IconButton(
                       color: AppColors.handwritingBlue,
                       tooltip: Socials.github.tooltip,
-                      icon: const Icon(FontAwesomeIcons.github),
+                      icon: const FaIcon(FontAwesomeIcons.github),
                       onPressed: () {
                         Socials.github.launcher();
                       },
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
                     IconButton(
                       color: AppColors.handwritingBlue,
                       tooltip: Socials.stackOverflow.tooltip,
-                      icon: const Icon(FontAwesomeIcons.stackOverflow),
+                      icon: const FaIcon(FontAwesomeIcons.stackOverflow),
                       onPressed: () {
                         Socials.stackOverflow.launcher();
                       },
@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                     IconButton(
                       color: AppColors.handwritingBlue,
                       tooltip: Socials.medium.tooltip,
-                      icon: const Icon(FontAwesomeIcons.medium),
+                      icon: const FaIcon(FontAwesomeIcons.medium),
                       onPressed: () {
                         Socials.medium.launcher();
                       },
@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                     IconButton(
                       color: AppColors.handwritingBlue,
                       tooltip: Socials.twitter.tooltip,
-                      icon: const Icon(FontAwesomeIcons.xTwitter),
+                      icon: const FaIcon(FontAwesomeIcons.xTwitter),
                       onPressed: () {
                         Socials.twitter.launcher();
                       },
@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
                     IconButton(
                       color: AppColors.handwritingBlue,
                       tooltip: Socials.linkedIn.tooltip,
-                      icon: const Icon(FontAwesomeIcons.linkedinIn),
+                      icon: const FaIcon(FontAwesomeIcons.linkedinIn),
                       onPressed: () {
                         Socials.linkedIn.launcher();
                       },
@@ -110,7 +110,7 @@ class HomePage extends StatelessWidget {
                     IconButton(
                       color: AppColors.handwritingBlue,
                       tooltip: Socials.speakerDeck.tooltip,
-                      icon: const Icon(FontAwesomeIcons.speakerDeck),
+                      icon: const FaIcon(FontAwesomeIcons.speakerDeck),
                       onPressed: () {
                         Socials.speakerDeck.launcher();
                       },
@@ -118,7 +118,7 @@ class HomePage extends StatelessWidget {
                     IconButton(
                       color: AppColors.handwritingBlue,
                       tooltip: Socials.resume.tooltip,
-                      icon: const Icon(FontAwesomeIcons.file),
+                      icon: const FaIcon(FontAwesomeIcons.file),
                       onPressed: () {
                         Socials.resume.launcher();
                       },
@@ -126,7 +126,7 @@ class HomePage extends StatelessWidget {
                     IconButton(
                       color: AppColors.handwritingBlue,
                       tooltip: Socials.art.tooltip,
-                      icon: const Icon(FontAwesomeIcons.paintbrush),
+                      icon: const FaIcon(FontAwesomeIcons.paintbrush),
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -137,19 +137,16 @@ class HomePage extends StatelessWidget {
                     ),
                     IconButton(
                       color: AppColors.handwritingBlue,
-                      tooltip: Socials.flip.tooltip,
-                      icon: const Icon(FontAwesomeIcons.turnUp),
+                      tooltip: Socials.unsplash.tooltip,
+                      icon: const FaIcon(FontAwesomeIcons.unsplash),
                       onPressed: () {
-                        GetIt.I
-                            .get<GlobalKey<PageFlipWidgetState>>()
-                            .currentState
-                            ?.nextPage();
+                        Socials.unsplash.launcher();
                       },
                     ),
                     IconButton(
                       color: AppColors.handwritingBlue,
                       tooltip: Socials.teampixel.tooltip,
-                      icon: const Icon(FontAwesomeIcons.cameraRetro),
+                      icon: const FaIcon(FontAwesomeIcons.cameraRetro),
                       onPressed: () {
                         Socials.teampixel.launcher();
                       },

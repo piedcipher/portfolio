@@ -10,7 +10,7 @@ enum Socials {
   speakerDeck,
   resume,
   art,
-  flip,
+  unsplash,
   teampixel,
 }
 
@@ -42,8 +42,8 @@ extension SocialsExtension on Socials {
         return 'Resume';
       case Socials.art:
         return 'Art';
-      case Socials.flip:
-        return 'Flip';
+      case Socials.unsplash:
+        return 'Unsplash';
       case Socials.teampixel:
         return 'Photography #TeamPixel';
     }
