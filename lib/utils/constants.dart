@@ -58,6 +58,7 @@ const _socials = {
   Socials.linkedIn: 'https://linkedin.com/in/tirth-patel',
   Socials.speakerDeck: 'https://speakerdeck.com/piedcipher',
   Socials.resume: 'https://tirth.today/assets/assets/Tirth-Patel-Resume.pdf',
+  Socials.unsplash: 'https://unsplash.com/@piedcipher',
   Socials.teampixel:
       'https://x.com/search?q=from%3Apiedcipher%20%23teampixel&src=typed_query',
 };
