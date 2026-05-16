@@ -8,6 +8,8 @@ import 'package:tirth_today/layouts/notebook_layout.dart';
 import 'package:tirth_today/utils/constants.dart';
 
 const List<String> _artImageFiles = [
+  'Android.png',
+  'AndroidEmulator.png',
   'Ads.jpeg',
   'Batman.jpeg',
   'BatmanGreen.jpeg',
