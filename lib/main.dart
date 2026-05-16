@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:page_flip/page_flip.dart';
+import 'package:tirth_today/pages/art_page.dart';
 import 'package:tirth_today/pages/art_video_player_page.dart';
 import 'package:tirth_today/pages/home_page.dart';
 import 'package:tirth_today/pages/work_experience_page.dart';
@@ -68,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
           switch (Pages.values[i]) {
             Pages.home => const HomePage(),
             Pages.workExperience => const WorkExperiencePage(),
+            Pages.artPage => const ArtPage(),
             _ => const ArtVideoPlayer(),
           },
       ],
