@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:get_it/get_it.dart';
@@ -79,8 +81,38 @@ const List<String> _artImageFiles = [
   'X.jpeg',
 ];
 
-class ArtPage extends StatelessWidget {
+class ArtPage extends StatefulWidget {
   const ArtPage({super.key});
+
+  @override
+  State<ArtPage> createState() => _ArtPageState();
+}
+
+class _ArtPageState extends State<ArtPage> {
+  late CardSwiperController _controller;
+  late Timer _autoSwipeTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = CardSwiperController();
+    _startAutoSwipe();
+  }
+
+  void _startAutoSwipe() {
+    _autoSwipeTimer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      if (mounted) {
+        _controller.swipe(CardSwiperDirection.left);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _autoSwipeTimer.cancel();
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +151,7 @@ class ArtPage extends StatelessWidget {
                 const SizedBox(height: 10),
                 Flexible(
                   child: CardSwiper(
+                    controller: _controller,
                     numberOfCardsDisplayed: 1,
                     cardsCount: _artImageFiles.length,
                     padding: const EdgeInsets.only(bottom: 24),
