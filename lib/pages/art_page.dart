@@ -28,6 +28,7 @@ const List<String> _artImageFiles = [
   'Cheese.png',
   'Clock.jpeg',
   'Cookie.png',
+  'Cricket.gif',
   'Devs.jpeg',
   'English.jpeg',
   'Espresso.jpeg',
