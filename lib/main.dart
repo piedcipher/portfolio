@@ -5,6 +5,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:page_flip/page_flip.dart';
 import 'package:tirth_today/pages/art_page.dart';
 import 'package:tirth_today/pages/art_video_player_page.dart';
+import 'package:tirth_today/pages/flutter_job_board.dart';
 import 'package:tirth_today/pages/home_page.dart';
 import 'package:tirth_today/pages/work_experience_page.dart';
 import 'package:tirth_today/utils/constants.dart';
@@ -28,7 +29,11 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
         ),
       ),
-      home: const MyHomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (_) => const FlutterJobBoard(),
+        '/flutter-job-board': (_) => const FlutterJobBoard(),
+      },
     );
   }
 }

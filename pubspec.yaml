@@ -17,7 +17,6 @@ dependencies:
   just_audio:
   get_it:
   flutter_card_swiper:
-  web:
 
 dev_dependencies:
   flutter_test:
