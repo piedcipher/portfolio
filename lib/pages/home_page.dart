@@ -155,9 +155,165 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
+            Positioned(left: 40, child: const Natraj()),
           ],
         ),
       ),
     );
+  }
+}
+
+class Natraj extends StatefulWidget {
+  const Natraj({super.key});
+
+  @override
+  State<Natraj> createState() => _NatrajState();
+}
+
+class _NatrajState extends State<Natraj> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _sway;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2400),
+    )..repeat(reverse: false);
+
+    _sway = Tween<double>(
+      begin: 40,
+      end: 60,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const DecoratedBox(
+          decoration: BoxDecoration(color: Colors.black),
+          child: SizedBox(height: 100, width: 35),
+        ),
+        const DecoratedBox(
+          decoration: BoxDecoration(color: Colors.white),
+          child: SizedBox(height: 10, width: 35),
+        ),
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            const DecoratedBox(
+              decoration: BoxDecoration(color: Colors.black),
+              child: SizedBox(height: 400, width: 35),
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.black),
+                  child: SizedBox(height: 400, width: 1),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.red),
+                  child: SizedBox(height: 400, width: 2),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.black),
+                  child: SizedBox(height: 400, width: 4),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.red),
+                  child: SizedBox(height: 400, width: 4),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.black),
+                  child: SizedBox(height: 400, width: 12),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.red),
+                  child: SizedBox(height: 400, width: 4),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.black),
+                  child: SizedBox(height: 400, width: 4),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.red),
+                  child: SizedBox(height: 400, width: 2),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.black),
+                  child: SizedBox(height: 400, width: 1),
+                ),
+              ],
+            ),
+          ],
+        ),
+        ClipPath(
+          clipper: WoodClipper(),
+          child: const DecoratedBox(
+            decoration: BoxDecoration(color: Color(0xFFBC664F)),
+            child: SizedBox(height: 65, width: 35),
+          ),
+        ),
+        ClipPath(
+          clipper: InkClipper(),
+          child: const DecoratedBox(
+            decoration: BoxDecoration(color: Color(0xFF141519)),
+            child: SizedBox(height: 30, width: 15),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class WoodClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    double width = size.width;
+    double height = size.height;
+    double offset = 10;
+    final path = Path();
+    path.lineTo(offset, height);
+    path.lineTo(width - offset, height);
+    path.lineTo(width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return false;
+  }
+}
+
+class InkClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    double width = size.width;
+    double height = size.height;
+    double offset = 7;
+    final path = Path();
+    path.lineTo(offset, height);
+    path.lineTo(width - offset, height);
+    path.lineTo(width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return false;
   }
 }
