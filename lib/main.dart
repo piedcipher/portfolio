@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
         ),
       ),
-      initialRoute: '/',
       routes: {
         '/': (_) => const MyHomePage(),
         '/flutter-job-board': (_) => const FlutterJobBoard(),
