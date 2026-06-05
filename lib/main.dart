@@ -14,6 +14,25 @@ void main() {
   runApp(const MyApp());
 }
 
+String _resolveInitialRoute() {
+  final path = Uri.base.path.trim();
+  if (path.isEmpty || path == '/') {
+    return '/';
+  }
+
+  // Normalize trailing slash so /flutter-job-board/ also resolves.
+  final normalized = path.endsWith('/') && path.length > 1
+      ? path.substring(0, path.length - 1)
+      : path;
+
+  switch (normalized) {
+    case '/flutter-job-board':
+      return '/flutter-job-board';
+    default:
+      return '/';
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -21,6 +40,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: Data.name,
+      initialRoute: _resolveInitialRoute(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.notebookWhite),
         textTheme: GoogleFonts.pangolinTextTheme(),
@@ -33,6 +53,8 @@ class MyApp extends StatelessWidget {
         '/': (_) => const MyHomePage(),
         '/flutter-job-board': (_) => const FlutterJobBoard(),
       },
+      onUnknownRoute: (_) =>
+          MaterialPageRoute(builder: (_) => const MyHomePage()),
     );
   }
 }
