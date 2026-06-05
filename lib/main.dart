@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (_) => const FlutterJobBoard(),
+        '/': (_) => const MyHomePage(),
         '/flutter-job-board': (_) => const FlutterJobBoard(),
       },
     );
