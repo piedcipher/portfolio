@@ -172,7 +172,6 @@ class Natraj extends StatefulWidget {
 
 class _NatrajState extends State<Natraj> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
-  late final Animation<double> _sway;
 
   @override
   void initState() {
@@ -181,11 +180,6 @@ class _NatrajState extends State<Natraj> with SingleTickerProviderStateMixin {
       vsync: this,
       duration: const Duration(milliseconds: 2400),
     )..repeat(reverse: false);
-
-    _sway = Tween<double>(
-      begin: 40,
-      end: 60,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
