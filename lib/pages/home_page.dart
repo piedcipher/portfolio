@@ -13,6 +13,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'home_next_page_fab',
         onPressed: () {
           GetIt.I
               .get<GlobalKey<PageFlipWidgetState>>()
@@ -154,6 +155,39 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ],
+            ),
+            Positioned(
+              top: 12,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  OutlinedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/blog');
+                    },
+                    label: const Text(
+                      'Blog',
+                      style: TextStyle(color: AppColors.handwritingBlue),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: AppColors.handwritingBlue),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  OutlinedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/flutter-job-board');
+                    },
+                    label: const Text(
+                      'Job Board',
+                      style: TextStyle(color: AppColors.handwritingBlue),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: AppColors.handwritingBlue),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Positioned(left: 40, child: const Natraj()),
           ],

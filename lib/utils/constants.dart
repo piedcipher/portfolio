@@ -68,6 +68,10 @@ abstract class Data {
   static const tagline = 'engineer, photographer, artist';
 }
 
+abstract class BlogConfig {
+  static const directory = 'blogs';
+}
+
 abstract class AppColors {
   static const notebookWhite = Color(0xFFF3EEFB);
   static final notebookRed = Colors.redAccent[100];

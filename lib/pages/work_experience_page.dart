@@ -60,6 +60,7 @@ class WorkExperiencePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.notebookWhite,
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'work_next_page_fab',
         onPressed: () {
           GetIt.I
               .get<GlobalKey<PageFlipWidgetState>>()

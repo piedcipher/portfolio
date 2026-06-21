@@ -122,6 +122,7 @@ class _ArtPageState extends State<ArtPage> {
     return Scaffold(
       backgroundColor: AppColors.notebookWhite,
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'art_next_page_fab',
         onPressed: () {
           GetIt.I
               .get<GlobalKey<PageFlipWidgetState>>()

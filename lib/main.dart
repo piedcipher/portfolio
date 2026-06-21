@@ -5,6 +5,8 @@ import 'package:just_audio/just_audio.dart';
 import 'package:page_flip/page_flip.dart';
 import 'package:tirth_today/pages/art_page.dart';
 import 'package:tirth_today/pages/art_video_player_page.dart';
+import 'package:tirth_today/pages/blog_list_page.dart';
+import 'package:tirth_today/pages/blog_post_page.dart';
 import 'package:tirth_today/pages/flutter_job_board.dart';
 import 'package:tirth_today/pages/home_page.dart';
 import 'package:tirth_today/pages/work_experience_page.dart';
@@ -14,25 +16,6 @@ void main() {
   runApp(const MyApp());
 }
 
-String _resolveInitialRoute() {
-  final path = Uri.base.path.trim();
-  if (path.isEmpty || path == '/') {
-    return '/';
-  }
-
-  // Normalize trailing slash so /flutter-job-board/ also resolves.
-  final normalized = path.endsWith('/') && path.length > 1
-      ? path.substring(0, path.length - 1)
-      : path;
-
-  switch (normalized) {
-    case '/flutter-job-board':
-      return '/flutter-job-board';
-    default:
-      return '/';
-  }
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -40,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: Data.name,
-      initialRoute: _resolveInitialRoute(),
+      initialRoute: '/',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.notebookWhite),
         textTheme: GoogleFonts.pangolinTextTheme(),
@@ -52,9 +35,62 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (_) => const MyHomePage(),
         '/flutter-job-board': (_) => const FlutterJobBoard(),
+        '/blog': (_) => const BlogListPage(),
+      },
+      onGenerateRoute: (settings) {
+        final routeName = settings.name ?? '/';
+        if (routeName.startsWith('/blog/')) {
+          final slug = routeName.substring('/blog/'.length);
+          return MaterialPageRoute(
+            builder: (_) => BlogPostPage(slug: slug),
+            settings: settings,
+          );
+        }
+
+        return null;
       },
       onUnknownRoute: (_) =>
           MaterialPageRoute(builder: (_) => const MyHomePage()),
+    );
+  }
+}
+
+class BlogNotFoundPage extends StatelessWidget {
+  const BlogNotFoundPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.notebookWhite,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Post not found',
+                style: TextStyle(
+                  fontSize: 28,
+                  color: AppColors.handwritingBlue,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'This blog URL does not exist yet.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 20),
+              FilledButton.tonal(
+                onPressed: () =>
+                    Navigator.of(context).pushReplacementNamed('/blog'),
+                child: const Text('Back to blog'),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

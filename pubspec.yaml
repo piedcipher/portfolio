@@ -17,6 +17,7 @@ dependencies:
   just_audio:
   get_it:
   flutter_card_swiper:
+  flutter_markdown:
 
 dev_dependencies:
   flutter_test:
@@ -28,3 +29,4 @@ flutter:
   assets:
     - 'assets/'
     - 'assets/Art/'
+    - 'blogs/'
