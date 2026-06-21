@@ -58,7 +58,7 @@ class BlogListPage extends StatelessWidget {
                     return const Padding(
                       padding: EdgeInsets.symmetric(vertical: 8),
                       child: Text(
-                        'No posts found in the local blogs folder.',
+                        'No posts found in assets/blogs/.',
                         style: TextStyle(fontSize: 16),
                       ),
                     );
@@ -95,7 +95,7 @@ class _BlogListError extends StatelessWidget {
         ),
         SizedBox(height: 8),
         Text(
-          'Check BlogConfig.directory and confirm markdown files exist in blogs/.',
+          'Check BlogConfig.directory and confirm markdown files exist in assets/blogs/.',
           style: TextStyle(fontSize: 14),
         ),
       ],

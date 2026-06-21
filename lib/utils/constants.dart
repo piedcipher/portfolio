@@ -69,7 +69,7 @@ abstract class Data {
 }
 
 abstract class BlogConfig {
-  static const directory = 'blogs';
+  static const directory = 'assets/blogs';
 }
 
 abstract class AppColors {
