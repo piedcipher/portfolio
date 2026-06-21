@@ -39,8 +39,11 @@ class MyApp extends StatelessWidget {
       },
       onGenerateRoute: (settings) {
         final routeName = settings.name ?? '/';
-        if (routeName.startsWith('/blog/')) {
-          final slug = routeName.substring('/blog/'.length);
+        final routeUri = Uri.tryParse(routeName);
+        final normalizedPath = routeUri?.path ?? routeName;
+
+        if (normalizedPath.startsWith('/blog/')) {
+          final slug = normalizedPath.substring('/blog/'.length);
           return MaterialPageRoute(
             builder: (_) => BlogPostPage(slug: slug),
             settings: settings,

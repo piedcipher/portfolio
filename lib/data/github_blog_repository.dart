@@ -32,10 +32,11 @@ class GitHubBlogRepository {
   }
 
   Future<BlogPost?> fetchPostBySlug(String slug) async {
-    final assetPath = '${BlogConfig.directory}/$slug.md';
+    final normalizedSlug = _normalizeSlug(slug);
+    final assetPath = '${BlogConfig.directory}/$normalizedSlug.md';
     try {
       final markdown = await rootBundle.loadString(assetPath);
-      return _parseMarkdown(slug, markdown, assetPath);
+      return _parseMarkdown(normalizedSlug, markdown, assetPath);
     } catch (_) {
       return null;
     }
@@ -70,6 +71,17 @@ class GitHubBlogRepository {
   String _slugFromFileName(String name) {
     final dotIndex = name.lastIndexOf('.');
     return dotIndex == -1 ? name : name.substring(0, dotIndex);
+  }
+
+  String _normalizeSlug(String slug) {
+    var normalized = Uri.decodeComponent(slug).trim();
+    normalized = normalized.replaceAll(RegExp(r'^/+|/+$'), '');
+
+    if (normalized.toLowerCase().endsWith('.md')) {
+      normalized = normalized.substring(0, normalized.length - 3);
+    }
+
+    return normalized;
   }
 
   Map<String, dynamic> _extractFrontMatter(List<String> lines) {
