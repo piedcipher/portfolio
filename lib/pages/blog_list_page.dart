@@ -110,26 +110,29 @@ class _BlogCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      tileColor: Colors.white.withAlpha(230),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      title: Text(
-        post.title,
-        style: const TextStyle(
-          fontSize: 20,
-          color: AppColors.handwritingBlue,
-          fontWeight: FontWeight.w600,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: ListTile(
+        tileColor: Colors.white.withAlpha(230),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        title: Text(
+          post.title,
+          style: const TextStyle(
+            fontSize: 20,
+            color: AppColors.handwritingBlue,
+            fontWeight: FontWeight.w600,
+          ),
         ),
-      ),
-      subtitle: Text(
-        '${_formatDate(post.publishedOn)}  •  ${post.readTimeMinutes} min read',
-        style: const TextStyle(
-          fontSize: 13,
-          color: AppColors.handwritingDarkBlue,
+        subtitle: Text(
+          '${_formatDate(post.publishedOn)}  •  ${post.readTimeMinutes} min read',
+          style: const TextStyle(
+            fontSize: 13,
+            color: AppColors.handwritingDarkBlue,
+          ),
         ),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => Navigator.of(context).pushNamed('/blog/${post.slug}'),
       ),
-      trailing: const Icon(Icons.chevron_right),
-      onTap: () => Navigator.of(context).pushNamed('/blog/${post.slug}'),
     );
   }
 }
