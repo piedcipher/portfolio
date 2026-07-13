@@ -42,6 +42,14 @@ class MyApp extends StatelessWidget {
         final routeUri = Uri.tryParse(routeName);
         final normalizedPath = routeUri?.path ?? routeName;
 
+        if (normalizedPath == '/blog') {
+          final selectedTag = routeUri?.queryParameters['tag'];
+          return MaterialPageRoute(
+            builder: (_) => BlogListPage(initialTag: selectedTag),
+            settings: settings,
+          );
+        }
+
         if (normalizedPath.startsWith('/blog/')) {
           final slug = normalizedPath.substring('/blog/'.length);
           return MaterialPageRoute(

@@ -4,12 +4,15 @@ import 'package:tirth_today/models/blog_post.dart';
 import 'package:tirth_today/utils/constants.dart';
 
 class BlogListPage extends StatelessWidget {
-  const BlogListPage({super.key});
+  const BlogListPage({super.key, this.initialTag});
 
   static const _repository = GitHubBlogRepository();
+  final String? initialTag;
 
   @override
   Widget build(BuildContext context) {
+    final selectedTag = _normalizeTag(initialTag);
+
     return Scaffold(
       backgroundColor: AppColors.notebookWhite,
       body: SafeArea(
@@ -38,6 +41,32 @@ class BlogListPage extends StatelessWidget {
                   ),
                 ],
               ),
+              if (selectedTag != null) ...[
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    const Text(
+                      'Filtering by:',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: AppColors.handwritingDarkBlue,
+                      ),
+                    ),
+                    Chip(
+                      label: Text(selectedTag),
+                      backgroundColor: Colors.white.withAlpha(230),
+                    ),
+                    TextButton(
+                      onPressed: () =>
+                          Navigator.of(context).pushReplacementNamed('/blog'),
+                      child: const Text('Clear'),
+                    ),
+                  ],
+                ),
+              ],
               const SizedBox(height: 24),
               FutureBuilder<List<BlogPost>>(
                 future: _repository.fetchPosts(),
@@ -54,18 +83,32 @@ class BlogListPage extends StatelessWidget {
                   }
 
                   final posts = snapshot.data ?? const <BlogPost>[];
-                  if (posts.isEmpty) {
+                  final visiblePosts = selectedTag == null
+                      ? posts
+                      : posts
+                            .where(
+                              (post) => post.tags.any(
+                                (tag) =>
+                                    _normalizeTag(tag) ==
+                                    _normalizeTag(selectedTag),
+                              ),
+                            )
+                            .toList();
+
+                  if (visiblePosts.isEmpty) {
                     return const Padding(
                       padding: EdgeInsets.symmetric(vertical: 8),
                       child: Text(
-                        'No posts found in assets/blogs/.',
+                        'No posts found for this tag.',
                         style: TextStyle(fontSize: 16),
                       ),
                     );
                   }
 
                   return Column(
-                    children: [for (final post in posts) _BlogCard(post: post)],
+                    children: [
+                      for (final post in visiblePosts) _BlogCard(post: post),
+                    ],
                   );
                 },
               ),
@@ -75,6 +118,25 @@ class BlogListPage extends StatelessWidget {
       ),
     );
   }
+}
+
+String? _normalizeTag(String? tag) {
+  if (tag == null) {
+    return null;
+  }
+
+  const maxTagLength = 64;
+  final normalized = tag
+      .replaceAll(RegExp(r'[^a-zA-Z0-9 _\-]'), ' ')
+      .replaceAll(RegExp(r'\s+'), ' ')
+      .trim();
+  if (normalized.isEmpty) {
+    return null;
+  }
+
+  return normalized
+      .substring(0, normalized.length.clamp(0, maxTagLength))
+      .toLowerCase();
 }
 
 class _BlogListError extends StatelessWidget {
@@ -130,6 +192,8 @@ class _BlogCard extends StatelessWidget {
             color: AppColors.handwritingDarkBlue,
           ),
         ),
+        isThreeLine: post.tags.isNotEmpty,
+        titleAlignment: ListTileTitleAlignment.top,
         trailing: const Icon(Icons.chevron_right),
         onTap: () => Navigator.of(context).pushNamed('/blog/${post.slug}'),
       ),

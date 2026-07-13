@@ -65,7 +65,15 @@ class BlogPostPage extends StatelessWidget {
                     }
 
                     final post = snapshot.data!;
-                    return _BlogPostBody(post: post);
+                    return _BlogPostBody(
+                      post: post,
+                      onTagTap: (tag) {
+                        final encodedTag = Uri.encodeQueryComponent(tag);
+                        Navigator.of(
+                          context,
+                        ).pushReplacementNamed('/blog?tag=$encodedTag');
+                      },
+                    );
                   },
                 ),
               ],
@@ -78,9 +86,10 @@ class BlogPostPage extends StatelessWidget {
 }
 
 class _BlogPostBody extends StatelessWidget {
-  const _BlogPostBody({required this.post});
+  const _BlogPostBody({required this.post, required this.onTagTap});
 
   final BlogPost post;
+  final ValueChanged<String> onTagTap;
 
   @override
   Widget build(BuildContext context) {
@@ -101,9 +110,10 @@ class _BlogPostBody extends StatelessWidget {
             runSpacing: 8,
             children: [
               for (final tag in post.tags)
-                Chip(
+                ActionChip(
                   label: Text(tag),
                   backgroundColor: Colors.white.withAlpha(230),
+                  onPressed: () => onTagTap(tag),
                 ),
             ],
           ),
@@ -117,7 +127,9 @@ class _BlogPostBody extends StatelessWidget {
             }
 
             final uri = Uri.tryParse(href);
-            if (uri != null) {
+            final scheme = uri?.scheme.toLowerCase();
+            final isAllowedScheme = scheme == 'https' || scheme == 'http';
+            if (uri != null && isAllowedScheme) {
               await launchUrl(uri);
             }
           },
