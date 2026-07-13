@@ -60,8 +60,9 @@ class BlogListPage extends StatelessWidget {
                       backgroundColor: Colors.white.withAlpha(230),
                     ),
                     TextButton(
-                      onPressed: () =>
-                          Navigator.of(context).pushReplacementNamed('/blog'),
+                      onPressed: () => Navigator.of(
+                        context,
+                      ).popUntil(ModalRoute.withName('/blog')),
                       child: const Text('Clear'),
                     ),
                   ],
