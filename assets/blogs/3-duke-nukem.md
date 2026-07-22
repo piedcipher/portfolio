@@ -32,7 +32,7 @@ Each chapter had 3 parts, so it always felt like a proper journey, not a quick r
 
 Seeing it on the [Mac App Store](https://apps.apple.com/in/app/duke-nukem-manhattan-project/id896145747) in 2026 was a very nice surprise.
 
-![Duke Nukem Manhattan Project hard mode completion, Wozma defeated, X-3000 unlocked](blogs_assets/Duke-Nukem-Hard-Mode.png)
+![Duke Nukem Manhattan Project hard mode completion, Wozma defeated, X-3000 unlocked](https://tirth.today/assets/assets/blogs_assets/Duke-Nukem-Hard-Mode.png)
 
 All secrets. All kills. All nukes. Hard mode done.
 
