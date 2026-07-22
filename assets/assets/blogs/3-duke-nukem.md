@@ -1,7 +1,7 @@
 ---
 title: Duke Nukem Manhattan Project
 date: 2026-07-12
-read_time: 1
+read_time: 2
 tags: gaming, nostalgia
 ---
 
