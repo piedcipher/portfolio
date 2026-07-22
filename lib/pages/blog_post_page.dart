@@ -122,6 +122,27 @@ class _BlogPostBody extends StatelessWidget {
         MarkdownBody(
           data: post.markdown,
           imageDirectory: 'assets',
+          sizedImageBuilder: (config) {
+            final uri = config.uri;
+            final scheme = uri.scheme.toLowerCase();
+            final isRemote = scheme == 'https' || scheme == 'http';
+
+            if (isRemote) {
+              return Image.network(
+                uri.toString(),
+                width: config.width,
+                height: config.height,
+                fit: BoxFit.contain,
+              );
+            }
+
+            return Image.asset(
+              uri.toString(),
+              width: config.width,
+              height: config.height,
+              fit: BoxFit.contain,
+            );
+          },
           onTapLink: (text, href, title) async {
             if (href == null || href.isEmpty) {
               return;
