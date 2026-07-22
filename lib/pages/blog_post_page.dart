@@ -121,6 +121,7 @@ class _BlogPostBody extends StatelessWidget {
         const SizedBox(height: 10),
         MarkdownBody(
           data: post.markdown,
+          imageDirectory: 'assets',
           onTapLink: (text, href, title) async {
             if (href == null || href.isEmpty) {
               return;
