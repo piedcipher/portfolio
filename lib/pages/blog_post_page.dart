@@ -202,6 +202,7 @@ class _BlogMarkdown extends StatelessWidget {
             width: config.width,
             height: config.height,
             fit: BoxFit.contain,
+            webHtmlElementStrategy: WebHtmlElementStrategy.prefer,
           );
         }
 
@@ -238,27 +239,26 @@ class _YoutubeEmbed extends StatefulWidget {
 }
 
 class _YoutubeEmbedState extends State<_YoutubeEmbed> {
-  late final YoutubePlayerController _controller;
+  YoutubePlayerController? _controller;
   bool _isInteracting = false;
 
   String get _thumbnailUrl =>
       'https://i.ytimg.com/vi/${widget.videoId}/hqdefault.jpg';
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = YoutubePlayerController.fromVideoId(
+  void _activatePlayer() {
+    _controller ??= YoutubePlayerController.fromVideoId(
       videoId: widget.videoId,
       params: const YoutubePlayerParams(
         showFullscreenButton: true,
         strictRelatedVideos: true,
       ),
     );
+    setState(() => _isInteracting = true);
   }
 
   @override
   void dispose() {
-    _controller.close();
+    _controller?.close();
     super.dispose();
   }
 
@@ -289,8 +289,8 @@ class _YoutubeEmbedState extends State<_YoutubeEmbed> {
             Image.network(
               _thumbnailUrl,
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) =>
-                  const ColoredBox(color: Colors.black),
+              webHtmlElementStrategy: WebHtmlElementStrategy.prefer,
+              errorBuilder: (_, _, _) => const ColoredBox(color: Colors.black),
             ),
             ColoredBox(color: Colors.black.withAlpha(70)),
             const Center(
@@ -312,13 +312,15 @@ class _YoutubeEmbedState extends State<_YoutubeEmbed> {
       ),
       child: ClipRRect(
         borderRadius: borderRadius,
-        child: YoutubePlayer(controller: _controller, aspectRatio: 16 / 9),
+        child: _controller == null
+            ? const AspectRatio(aspectRatio: 16 / 9, child: SizedBox.shrink())
+            : YoutubePlayer(controller: _controller!, aspectRatio: 16 / 9),
       ),
     );
 
     if (!_isInteracting) {
       return GestureDetector(
-        onTap: () => setState(() => _isInteracting = true),
+        onTap: _activatePlayer,
         child: MouseRegion(cursor: SystemMouseCursors.click, child: thumbnail),
       );
     }
