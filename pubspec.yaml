@@ -18,6 +18,8 @@ dependencies:
   get_it:
   flutter_card_swiper:
   flutter_markdown:
+  youtube_player_iframe:
+  pointer_interceptor:
 
 dev_dependencies:
   flutter_test:
