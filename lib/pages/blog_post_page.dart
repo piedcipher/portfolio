@@ -241,6 +241,9 @@ class _YoutubeEmbedState extends State<_YoutubeEmbed> {
   late final YoutubePlayerController _controller;
   bool _isInteracting = false;
 
+  String get _thumbnailUrl =>
+      'https://i.ytimg.com/vi/${widget.videoId}/hqdefault.jpg';
+
   @override
   void initState() {
     super.initState();
@@ -274,39 +277,70 @@ class _YoutubeEmbedState extends State<_YoutubeEmbed> {
 
   @override
   Widget build(BuildContext context) {
+    final borderRadius = BorderRadius.circular(12);
+
+    final thumbnail = ClipRRect(
+      borderRadius: borderRadius,
+      child: AspectRatio(
+        aspectRatio: 16 / 9,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.network(
+              _thumbnailUrl,
+              fit: BoxFit.cover,
+              errorBuilder: (_, __, ___) =>
+                  const ColoredBox(color: Colors.black),
+            ),
+            ColoredBox(color: Colors.black.withAlpha(70)),
+            const Center(
+              child: Icon(
+                Icons.play_circle_fill,
+                size: 64,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
     final player = DecoratedBox(
       decoration: BoxDecoration(
         color: Colors.black,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: borderRadius,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: borderRadius,
         child: YoutubePlayer(controller: _controller, aspectRatio: 16 / 9),
       ),
     );
+
+    if (!_isInteracting) {
+      return GestureDetector(
+        onTap: () => setState(() => _isInteracting = true),
+        child: MouseRegion(cursor: SystemMouseCursors.click, child: thumbnail),
+      );
+    }
 
     return MouseRegion(
       onExit: (_) => setState(() => _isInteracting = false),
       child: Stack(
         children: [
           player,
-          if (!_isInteracting)
-            Positioned.fill(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: PointerInterceptor(
-                  child: Listener(
-                    onPointerSignal: (event) {
-                      if (event is PointerScrollEvent) _onScrollEvent(event);
-                    },
-                    child: GestureDetector(
-                      onTap: () => setState(() => _isInteracting = true),
-                      child: Container(color: Colors.transparent),
-                    ),
-                  ),
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: borderRadius,
+              child: PointerInterceptor(
+                child: Listener(
+                  onPointerSignal: (event) {
+                    if (event is PointerScrollEvent) _onScrollEvent(event);
+                  },
+                  child: const ColoredBox(color: Colors.transparent),
                 ),
               ),
             ),
+          ),
         ],
       ),
     );
