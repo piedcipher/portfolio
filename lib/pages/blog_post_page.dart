@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:tirth_today/data/github_blog_repository.dart';
@@ -260,6 +261,21 @@ class _YoutubeEmbedState extends State<_YoutubeEmbed> {
     super.dispose();
   }
 
+  void _onScrollEvent(PointerScrollEvent event) {
+    final scrollable = Scrollable.maybeOf(context);
+    if (scrollable == null) {
+      return;
+    }
+
+    final position = scrollable.position;
+    position.jumpTo(
+      (position.pixels + event.scrollDelta.dy).clamp(
+        position.minScrollExtent,
+        position.maxScrollExtent,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(12);
@@ -310,7 +326,22 @@ class _YoutubeEmbedState extends State<_YoutubeEmbed> {
       );
     }
 
-    return player;
+    return Stack(
+      children: [
+        player,
+        Positioned.fill(
+          child: Listener(
+            behavior: HitTestBehavior.translucent,
+            onPointerSignal: (event) {
+              if (event is PointerScrollEvent) {
+                _onScrollEvent(event);
+              }
+            },
+            child: const SizedBox.expand(),
+          ),
+        ),
+      ],
+    );
   }
 }
 
