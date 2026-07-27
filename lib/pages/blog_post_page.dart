@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:tirth_today/data/github_blog_repository.dart';
 import 'package:tirth_today/models/blog_post.dart';
 import 'package:tirth_today/utils/constants.dart';
@@ -239,7 +240,8 @@ class _YoutubeEmbed extends StatefulWidget {
 
 class _YoutubeEmbedState extends State<_YoutubeEmbed> {
   YoutubePlayerController? _controller;
-  bool _isInteracting = false;
+  bool _isPlayerVisible = false;
+  bool _allowPlayerInteraction = false;
 
   String get _thumbnailUrl =>
       'https://i.ytimg.com/vi/${widget.videoId}/hqdefault.jpg';
@@ -252,7 +254,10 @@ class _YoutubeEmbedState extends State<_YoutubeEmbed> {
         strictRelatedVideos: true,
       ),
     );
-    setState(() => _isInteracting = true);
+    setState(() {
+      _isPlayerVisible = true;
+      _allowPlayerInteraction = false;
+    });
   }
 
   @override
@@ -319,25 +324,49 @@ class _YoutubeEmbedState extends State<_YoutubeEmbed> {
       ),
     );
 
-    if (!_isInteracting) {
+    if (!_isPlayerVisible) {
       return GestureDetector(
         onTap: _activatePlayer,
         child: MouseRegion(cursor: SystemMouseCursors.click, child: thumbnail),
       );
     }
 
-    return Stack(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        player,
-        Positioned.fill(
-          child: Listener(
-            behavior: HitTestBehavior.translucent,
-            onPointerSignal: (event) {
-              if (event is PointerScrollEvent) {
-                _onScrollEvent(event);
-              }
-            },
-            child: const SizedBox.expand(),
+        Stack(
+          children: [
+            player,
+            if (!_allowPlayerInteraction)
+              Positioned.fill(
+                child: PointerInterceptor(
+                  child: Listener(
+                    behavior: HitTestBehavior.opaque,
+                    onPointerSignal: (event) {
+                      if (event is PointerScrollEvent) {
+                        _onScrollEvent(event);
+                      }
+                    },
+                    child: const SizedBox.expand(),
+                  ),
+                ),
+              ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        TextButton.icon(
+          onPressed: () {
+            setState(() {
+              _allowPlayerInteraction = !_allowPlayerInteraction;
+            });
+          },
+          icon: Icon(
+            _allowPlayerInteraction ? Icons.pan_tool_alt : Icons.mouse,
+          ),
+          label: Text(
+            _allowPlayerInteraction
+                ? 'Back to scroll mode'
+                : 'Interact with video',
           ),
         ),
       ],
