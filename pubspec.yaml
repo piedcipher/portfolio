@@ -20,7 +20,7 @@ dependencies:
   flutter_markdown:
   youtube_player_iframe:
   pointer_interceptor:
-
+  material_ui:
 dev_dependencies:
   flutter_test:
     sdk: flutter

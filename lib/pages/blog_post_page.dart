@@ -1,5 +1,5 @@
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:tirth_today/data/github_blog_repository.dart';

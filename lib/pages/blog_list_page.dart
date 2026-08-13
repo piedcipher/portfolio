@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:tirth_today/data/github_blog_repository.dart';
 import 'package:tirth_today/models/blog_post.dart';
 import 'package:tirth_today/utils/constants.dart';

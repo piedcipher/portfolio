@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.notebookWhite),
-        textTheme: GoogleFonts.pangolinTextTheme(),
+        fontFamily: GoogleFonts.pangolin().fontFamily,
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: AppColors.handwritingBlue,
           foregroundColor: Colors.white,
