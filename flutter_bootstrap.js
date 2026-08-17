@@ -38,10 +38,10 @@ addEventListener("message", eventListener);
 if (!window._flutter) {
   window._flutter = {};
 }
-_flutter.buildConfig = {"engineRevision":"0319782a5eacbd248f80a8f7b227e259c7ec124a","wasmHashes":{"wimp.wasm":"7a232211f1db41a7dd9f24ae3f705aab9ef14f8437f757c4cac28e3be0ef9e2a","webparagraph/canvaskit.wasm":"45df1b425657b51098684e95abb26f4e8d5fd2df6449be7a7da79f048377675d","skwasm.wasm":"0895d9b57d482db13cb460918a65c701dc5fe6e59a62bfcac7f63f7f8bd587b4","chromium/canvaskit.wasm":"57d59a27218a9c5f8c40bee3bd9d1507386543f1d725130cd124a7a23103fd93","canvaskit.wasm":"4d23dafa97dd150e88c10e2d1fb82a87eb99185efed71dc41bb82bbdc5fe4a27","skwasm_heavy.wasm":"ebcfa6735d3ba05873034c571e19106d2b0e6d7160ee4f0cc10f9a39bbc87e5d"},"builds":[{"compileTarget":"dart2wasm","renderer":"skwasm","mainWasmPath":"main.dart.wasm","jsSupportRuntimePath":"main.dart.mjs"},{"compileTarget":"dart2js","renderer":"canvaskit","mainJsPath":"main.dart.js"}]};
+_flutter.buildConfig = {"engineRevision":"8c631c518512afc692eb26ff83d01a1ba23b2f16","wasmHashes":{"wimp.wasm":"7a232211f1db41a7dd9f24ae3f705aab9ef14f8437f757c4cac28e3be0ef9e2a","webparagraph/canvaskit.wasm":"45df1b425657b51098684e95abb26f4e8d5fd2df6449be7a7da79f048377675d","skwasm.wasm":"0895d9b57d482db13cb460918a65c701dc5fe6e59a62bfcac7f63f7f8bd587b4","chromium/canvaskit.wasm":"57d59a27218a9c5f8c40bee3bd9d1507386543f1d725130cd124a7a23103fd93","canvaskit.wasm":"4d23dafa97dd150e88c10e2d1fb82a87eb99185efed71dc41bb82bbdc5fe4a27","skwasm_heavy.wasm":"ebcfa6735d3ba05873034c571e19106d2b0e6d7160ee4f0cc10f9a39bbc87e5d","main.dart.wasm":"96745119ef4e5a3699f4c3034942b69391ee4b27b8db7cb5a75adfb7b06bfbe4"},"builds":[{"compileTarget":"dart2wasm","renderer":"skwasm","mainWasmPath":"main.dart.wasm","jsSupportRuntimePath":"main.dart.mjs"},{"compileTarget":"dart2js","renderer":"canvaskit","mainJsPath":"main.dart.js"}]};
 
 _flutter.loader.load({
   serviceWorkerSettings: {
-    serviceWorkerVersion: "2822236963" /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */
+    serviceWorkerVersion: "1225273821" /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */
   }
 });

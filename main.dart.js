@@ -30786,7 +30786,7 @@ $S:2}
 A.aEn.prototype={
 $1(a){var s=A.d7().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/0319782a5eacbd248f80a8f7b227e259c7ec124a/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/8c631c518512afc692eb26ff83d01a1ba23b2f16/":s)+a},
 $S:39}
 A.Mu.prototype={$iaLy:1}
 A.T4.prototype={
