@@ -31,5 +31,6 @@ flutter:
   assets:
     - 'assets/'
     - 'assets/Art/'
+    - 'assets/animals_assets/'
     - 'assets/blogs_assets/'
     - 'assets/blogs/'

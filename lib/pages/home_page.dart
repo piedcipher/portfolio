@@ -186,6 +186,19 @@ class HomePage extends StatelessWidget {
                       side: const BorderSide(color: AppColors.handwritingBlue),
                     ),
                   ),
+                  const SizedBox(width: 8),
+                  OutlinedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/animals');
+                    },
+                    label: const Text(
+                      'Animals',
+                      style: TextStyle(color: AppColors.handwritingBlue),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: AppColors.handwritingBlue),
+                    ),
+                  ),
                 ],
               ),
             ),

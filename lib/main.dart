@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:page_flip/page_flip.dart';
+import 'package:tirth_today/pages/animals_page.dart';
 import 'package:tirth_today/pages/art_page.dart';
 import 'package:tirth_today/pages/art_video_player_page.dart';
 import 'package:tirth_today/pages/blog_list_page.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/': (_) => const MyHomePage(),
         '/flutter-job-board': (_) => const FlutterJobBoard(),
         '/blog': (_) => const BlogListPage(),
+        '/animals': (_) => const AnimalsPage(),
       },
       onGenerateRoute: (settings) {
         final routeName = settings.name ?? '/';
