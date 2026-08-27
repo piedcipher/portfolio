@@ -38,10 +38,10 @@ addEventListener("message", eventListener);
 if (!window._flutter) {
   window._flutter = {};
 }
-_flutter.buildConfig = {"engineRevision":"58cc1b845dfa7035182336861288b662904350ca","wasmHashes":{"wimp.wasm":"99dc28c7dabd94d2d9a2f8cb60483e6c287dfb92a1c3c9c652a439a5b81640a2","webparagraph/canvaskit.wasm":"3f258b3f10cc8e864130030abc5c47e589db13ae64381d049724e75fd99991c7","skwasm.wasm":"96eb5639021d0855484dc9372a40370d7f9b22a6d9e00c800e1673defe693499","chromium/canvaskit.wasm":"35b7ba434b70efe04acc4894a092c57ee4552e14a14e2cad94073cb1df861982","canvaskit.wasm":"21c2780edaea4cbd45fceddfb29f27ccf0a346b2969dfda153e4b1e5fa193e20","skwasm_heavy.wasm":"9163c0cca2e0cc08b4fbd83181866654bee5054a154326230689a809bbac9cd0","main.dart.wasm":"96745119ef4e5a3699f4c3034942b69391ee4b27b8db7cb5a75adfb7b06bfbe4"},"builds":[{"compileTarget":"dart2wasm","renderer":"skwasm","mainWasmPath":"main.dart.wasm","jsSupportRuntimePath":"main.dart.mjs"},{"compileTarget":"dart2js","renderer":"canvaskit","mainJsPath":"main.dart.js"}]};
+_flutter.buildConfig = {"engineRevision":"58cc1b845dfa7035182336861288b662904350ca","wasmHashes":{"wimp.wasm":"99dc28c7dabd94d2d9a2f8cb60483e6c287dfb92a1c3c9c652a439a5b81640a2","webparagraph/canvaskit.wasm":"3f258b3f10cc8e864130030abc5c47e589db13ae64381d049724e75fd99991c7","skwasm.wasm":"96eb5639021d0855484dc9372a40370d7f9b22a6d9e00c800e1673defe693499","chromium/canvaskit.wasm":"35b7ba434b70efe04acc4894a092c57ee4552e14a14e2cad94073cb1df861982","canvaskit.wasm":"21c2780edaea4cbd45fceddfb29f27ccf0a346b2969dfda153e4b1e5fa193e20","skwasm_heavy.wasm":"9163c0cca2e0cc08b4fbd83181866654bee5054a154326230689a809bbac9cd0","main.dart.wasm":"e42040e733d816f8e507986e64cd118eb2034746eb93e88d7ece55aa675ad9d8"},"builds":[{"compileTarget":"dart2wasm","renderer":"skwasm","mainWasmPath":"main.dart.wasm","jsSupportRuntimePath":"main.dart.mjs"},{"compileTarget":"dart2js","renderer":"canvaskit","mainJsPath":"main.dart.js"}]};
 
 _flutter.loader.load({
   serviceWorkerSettings: {
-    serviceWorkerVersion: "3412286965" /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */
+    serviceWorkerVersion: "2579212961" /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */
   }
 });
