@@ -169,23 +169,20 @@ class _AnimalMediaTileState extends State<_AnimalMediaTile> {
 
   bool get _isVideo => widget.assetName.toLowerCase().endsWith('.mp4');
 
-  @override
-  void initState() {
-    super.initState();
-    if (_isVideo) {
-      final controller = VideoPlayerController.asset(
-        'assets/animals_assets/${widget.assetName}',
-      );
-      _controller = controller;
-      controller.initialize().then((_) {
-        if (!mounted) return;
-        controller
-          ..setLooping(true)
-          ..setVolume(0)
-          ..play();
-        setState(() {});
-      });
-    }
+  Future<void> _startVideo() async {
+    if (_controller != null) return;
+
+    final controller = VideoPlayerController.asset(
+      'assets/animals_assets/${widget.assetName}',
+    );
+    setState(() => _controller = controller);
+
+    await controller.initialize();
+    if (!mounted || _controller != controller) return;
+    await controller.setLooping(true);
+    await controller.setVolume(0);
+    await controller.play();
+    setState(() {});
   }
 
   @override
@@ -204,10 +201,22 @@ class _AnimalMediaTileState extends State<_AnimalMediaTile> {
   }
 
   Widget _buildMedia(VideoPlayerController? controller) {
-    if (!_isVideo || controller == null) {
+    if (!_isVideo) {
       return Image.asset(
         'assets/animals_assets/${widget.assetName}',
         fit: BoxFit.cover,
+      );
+    }
+
+    if (controller == null) {
+      return Material(
+        color: AppColors.handwritingDarkBlue,
+        child: InkWell(
+          onTap: _startVideo,
+          child: const Center(
+            child: Icon(Icons.play_circle_fill, color: Colors.white, size: 52),
+          ),
+        ),
       );
     }
 
