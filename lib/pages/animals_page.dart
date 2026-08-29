@@ -193,16 +193,27 @@ class _AnimalMediaTileState extends State<_AnimalMediaTile> {
   @override
   Widget build(BuildContext context) {
     final controller = _controller;
+    final devicePixelRatio = MediaQuery.devicePixelRatioOf(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
-      child: _buildMedia(controller),
+      child: _buildMedia(
+        controller,
+        cacheWidth: (180 * devicePixelRatio).round(),
+        cacheHeight: (190 * devicePixelRatio).round(),
+      ),
     );
   }
 
-  Widget _buildMedia(VideoPlayerController? controller) {
+  Widget _buildMedia(
+    VideoPlayerController? controller, {
+    required int cacheWidth,
+    required int cacheHeight,
+  }) {
     if (!_isVideo) {
       return Image.asset(
         'assets/animals_assets/${widget.assetName}',
+        cacheWidth: cacheWidth,
+        cacheHeight: cacheHeight,
         fit: BoxFit.cover,
       );
     }
