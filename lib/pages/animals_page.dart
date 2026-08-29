@@ -199,7 +199,6 @@ class _AnimalMediaTileState extends State<_AnimalMediaTile> {
       child: _buildMedia(
         controller,
         cacheWidth: (180 * devicePixelRatio).round(),
-        cacheHeight: (190 * devicePixelRatio).round(),
       ),
     );
   }
@@ -207,13 +206,11 @@ class _AnimalMediaTileState extends State<_AnimalMediaTile> {
   Widget _buildMedia(
     VideoPlayerController? controller, {
     required int cacheWidth,
-    required int cacheHeight,
   }) {
     if (!_isVideo) {
       return Image.asset(
         'assets/animals_assets/${widget.assetName}',
         cacheWidth: cacheWidth,
-        cacheHeight: cacheHeight,
         fit: BoxFit.cover,
       );
     }
