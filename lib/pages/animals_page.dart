@@ -41,6 +41,7 @@ class AnimalsPage extends StatelessWidget {
     'Supra-2.jpg',
     'Supra-3.jpg',
     'Supra-4.jpg',
+    'Supra-5.mp4',
     'Tea-1.jpg',
     'Tea-2.jpg',
     'Vadu-1.jpg',
