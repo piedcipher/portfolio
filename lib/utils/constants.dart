@@ -65,7 +65,7 @@ const _socials = {
 
 abstract class Data {
   static const name = 'Tirth Patel';
-  static const tagline = 'engineer, photographer, artist';
+  static const tagline = 'Engineer, Photographer, Artist';
 }
 
 abstract class BlogConfig {
