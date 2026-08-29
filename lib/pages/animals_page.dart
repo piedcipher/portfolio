@@ -67,88 +67,87 @@ class AnimalsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final groups = _groupedAssets.entries;
+
     return Scaffold(
       backgroundColor: AppColors.notebookWhite,
       body: SafeArea(
-        child: Align(
-          alignment: Alignment.topCenter,
-          child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                    tooltip: 'Back',
-                    onPressed: () => Navigator.of(context).maybePop(),
-                    icon: const Icon(Icons.arrow_back),
-                  ),
-                  const SizedBox(width: 12),
-                  const Expanded(
-                    child: Text(
-                      'Animals',
-                      style: TextStyle(
-                        fontSize: 36,
-                        color: AppColors.handwritingBlue,
-                        fontWeight: FontWeight.w600,
+        child: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
+              sliver: SliverToBoxAdapter(
+                child: Row(
+                  children: [
+                    IconButton(
+                      tooltip: 'Back',
+                      onPressed: () => Navigator.of(context).maybePop(),
+                      icon: const Icon(Icons.arrow_back),
+                    ),
+                    const SizedBox(width: 12),
+                    const Expanded(
+                      child: Text(
+                        'Animals',
+                        style: TextStyle(
+                          fontSize: 36,
+                          color: AppColors.handwritingBlue,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              const SizedBox(height: 24),
-              for (final group in _groupedAssets.entries)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+            for (final group in groups) ...[
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(24, 0, 24, 10),
+                sliver: SliverToBoxAdapter(
+                  child: Row(
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            _emojiForGroup(group.key),
-                            style: const TextStyle(fontSize: 24),
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            group.key,
-                            style: const TextStyle(
-                              fontSize: 24,
-                              color: AppColors.handwritingBlue,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            '${group.value.length} photos',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              color: AppColors.handwritingDarkBlue,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        _emojiForGroup(group.key),
+                        style: const TextStyle(fontSize: 24),
                       ),
-                      const SizedBox(height: 10),
-                      GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: group.value.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 180,
-                              mainAxisExtent: 190,
-                              crossAxisSpacing: 12,
-                              mainAxisSpacing: 12,
-                            ),
-                        itemBuilder: (context, index) {
-                          final assetName = group.value[index];
-                          return _AnimalMediaTile(assetName: assetName);
-                        },
+                      const SizedBox(width: 8),
+                      Text(
+                        group.key,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          color: AppColors.handwritingBlue,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        '${group.value.length} photos',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: AppColors.handwritingDarkBlue,
+                        ),
                       ),
                     ],
                   ),
                 ),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+                sliver: SliverGrid(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) =>
+                        _AnimalMediaTile(assetName: group.value[index]),
+                    childCount: group.value.length,
+                  ),
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 180,
+                    mainAxisExtent: 190,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                  ),
+                ),
+              ),
             ],
-          ),
+          ],
         ),
       ),
     );
