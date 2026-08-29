@@ -100675,7 +100675,7 @@ q=r?n:this.game()
 p=r?B.Ys:B.N8
 o=A.dB(r?"Opening...":"Open Job Board",n,n,n)
 r=t.p
-return A.rD(new A.zR(B.a0C,B.bP,B.a9,new A.a_H(n,n,1/0,56),n),B.bP,A.h1(new A.eE(B.HE,new A.bI(B.k6,A.aMF(new A.bI(B.k6,A.eD(A.c([m,B.cd,B.a0s,B.ma,new A.EQ(s,B.iW,n),B.ma,A.xH(B.aj,A.c([new A.Ox(!0,q,n,n,n,n,B.y,n,!1,n,!0,n,new A.Y2(o,p,n,n,n),n),A.ajW(B.N7,B.a0l,this.gadx(),n)],r),B.fP,10,10)],r),B.ba,B.U,B.bn),n),B.k,n),n),n),n,n),n)}}
+return A.rD(new A.zR(B.a0D,B.bP,B.a9,new A.a_H(n,n,1/0,56),n),B.bP,A.h1(new A.eE(B.HE,new A.bI(B.k6,A.aMF(new A.bI(B.k6,A.eD(A.c([m,B.cd,B.a0s,B.ma,new A.EQ(s,B.iW,n),B.ma,A.xH(B.aj,A.c([new A.Ox(!0,q,n,n,n,n,B.y,n,!1,n,!0,n,new A.Y2(o,p,n,n,n),n),A.ajW(B.N7,B.a0l,this.gadx(),n)],r),B.fP,10,10)],r),B.ba,B.U,B.bn),n),B.k,n),n),n),n,n),n)}}
 A.axy.prototype={
 $0(){this.a.d=!0},
 $S:0}
@@ -100684,7 +100684,7 @@ $0(){this.a.d=!1},
 $S:0}
 A.P7.prototype={
 I(a){var s=null,r=A.aI0("home_next_page_fab",A.dB("Next Page",s,s,s),new A.adF(),"Page can be swiped as well"),q=t.p
-return A.rD(s,B.bP,A.h1(A.ec(B.L,A.c([new A.Db(s),A.eD(A.c([B.a0z,B.iS,B.a0D,B.iS,A.aOH(A.c([A.fK(B.a9,s,B.Mm,s,s,new A.adG(),s,s,A.mu(B.mf)),A.fK(B.a9,s,B.Ml,s,s,new A.adH(),s,s,A.mu(B.mg)),A.fK(B.a9,s,B.Mh,s,s,new A.adL(),s,s,A.mu(B.mh)),A.fK(B.a9,s,B.Mi,s,s,new A.adM(),s,s,A.mu(B.mi)),A.fK(B.a9,s,B.Me,s,s,new A.adN(),s,s,A.mu(B.mj))],q),B.wI,8,8),B.iS,A.aOH(A.c([A.fK(B.a9,s,B.Mk,s,s,new A.adO(),s,s,A.mu(B.mk)),A.fK(B.a9,s,B.Mn,s,s,new A.adP(),s,s,A.mu(B.ml)),A.fK(B.a9,s,B.Mj,s,s,new A.adQ(a),s,s,A.mu(B.YN)),A.fK(B.a9,s,B.Mf,s,s,new A.adR(),s,s,A.mu(B.mm)),A.fK(B.a9,s,B.Mg,s,s,new A.adS(),s,s,A.mu(B.mn))],q),B.wI,8,8)],q),B.a4,B.dR,B.au),A.wh(s,A.iV(A.c([A.ajW(s,B.a0y,new A.adI(a),A.aIF(s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,B.jB,s,s,s,s)),B.iQ,A.ajW(s,B.a0t,new A.adJ(a),A.aIF(s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,B.jB,s,s,s,s)),B.iQ,A.ajW(s,B.a0A,new A.adK(a),A.aIF(s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,B.jB,s,s,s,s))],q),B.a4,B.U,B.bn,0,s),s,s,s,s,12,s),A.wh(s,B.T5,s,s,40,s,s,s)],q),B.C,B.bu),s,s),r)}}
+return A.rD(s,B.bP,A.h1(A.ec(B.L,A.c([new A.Db(s),A.eD(A.c([B.a0A,B.iS,B.a0z,B.iS,A.aOH(A.c([A.fK(B.a9,s,B.Mm,s,s,new A.adG(),s,s,A.mu(B.mf)),A.fK(B.a9,s,B.Ml,s,s,new A.adH(),s,s,A.mu(B.mg)),A.fK(B.a9,s,B.Mh,s,s,new A.adL(),s,s,A.mu(B.mh)),A.fK(B.a9,s,B.Mi,s,s,new A.adM(),s,s,A.mu(B.mi)),A.fK(B.a9,s,B.Me,s,s,new A.adN(),s,s,A.mu(B.mj))],q),B.wI,8,8),B.iS,A.aOH(A.c([A.fK(B.a9,s,B.Mk,s,s,new A.adO(),s,s,A.mu(B.mk)),A.fK(B.a9,s,B.Mn,s,s,new A.adP(),s,s,A.mu(B.ml)),A.fK(B.a9,s,B.Mj,s,s,new A.adQ(a),s,s,A.mu(B.YN)),A.fK(B.a9,s,B.Mf,s,s,new A.adR(),s,s,A.mu(B.mm)),A.fK(B.a9,s,B.Mg,s,s,new A.adS(),s,s,A.mu(B.mn))],q),B.wI,8,8)],q),B.a4,B.dR,B.au),A.wh(s,A.iV(A.c([A.ajW(s,B.a0y,new A.adI(a),A.aIF(s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,B.jB,s,s,s,s)),B.iQ,A.ajW(s,B.a0t,new A.adJ(a),A.aIF(s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,B.jB,s,s,s,s)),B.iQ,A.ajW(s,B.a0B,new A.adK(a),A.aIF(s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,B.jB,s,s,s,s))],q),B.a4,B.U,B.bn,0,s),s,s,s,s,12,s),A.wh(s,B.T5,s,s,40,s,s,s)],q),B.C,B.bu),s,s),r)}}
 A.adF.prototype={
 $0(){var s=$.a56().Ex(t.q7).gP()
 if(s!=null)s.pF()},
@@ -108116,9 +108116,9 @@ B.a49=new A.kL(4,"remove")
 B.YG=new A.kL(5,"timeout")
 B.YI=new A.TM(null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.YH=new A.wZ(null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.a0B=new A.cX("Could not open the job board link.",null,null,null,null,null,null)
+B.a0C=new A.cX("Could not open the job board link.",null,null,null,null,null,null)
 B.p0=new A.aB(4e6)
-B.YJ=new A.ot(B.a0B,null,null,null,null,null,null,null,null,null,null,null,null,B.p0,!1,null,null,null,B.C,null)
+B.YJ=new A.ot(B.a0C,null,null,null,null,null,null,null,null,null,null,null,null,B.p0,!1,null,null,null,B.C,null)
 B.a0k=new A.cX("Job board link copied to clipboard.",null,null,null,null,null,null)
 B.YK=new A.ot(B.a0k,null,null,null,null,null,null,null,null,null,null,null,null,B.p0,!1,null,null,null,B.C,null)
 B.BN=new A.Fk(0,"permissive")
@@ -108540,12 +108540,12 @@ B.a0t=new A.cX("Job Board",null,B.iW,null,null,null,null)
 B.a0u=new A.cX("Clear",null,null,null,null,null,null)
 B.a0x=new A.cX("Art w Flutter",null,B.mw,null,null,null,null)
 B.a0y=new A.cX("Blog",null,B.iW,null,null,null,null)
-B.a0z=new A.cX("Tirth Patel",null,B.mw,null,null,null,null)
-B.a0A=new A.cX("Animals",null,B.iW,null,null,null,null)
-B.a0C=new A.cX("Flutter Job Board",null,null,null,null,null,null)
 B.Zs=new A.t_(4,"wavy")
 B.a__=new A.w(!0,B.a9,null,null,null,null,18,null,null,null,null,null,null,null,null,null,null,B.ee,B.a9,B.Zs,0.8,null,null,null,null,null)
-B.a0D=new A.cX("engineer, photographer, artist",null,B.a__,null,null,null,null)
+B.a0z=new A.cX("Engineer, Photographer, Artist",null,B.a__,null,null,null,null)
+B.a0A=new A.cX("Tirth Patel",null,B.mw,null,null,null,null)
+B.a0B=new A.cX("Animals",null,B.iW,null,null,null,null)
+B.a0D=new A.cX("Flutter Job Board",null,null,null,null,null,null)
 B.a4c=new A.ash(0,"system")
 B.TV=new A.i(0.056,0.024)
 B.U7=new A.i(0.108,0.3085)
