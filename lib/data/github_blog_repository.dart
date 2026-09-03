@@ -18,7 +18,7 @@ class GitHubBlogRepository {
                   path.toLowerCase().endsWith('.md'),
             )
             .toList()
-          ..sort((a, b) => b.compareTo(a));
+          ..sort(_compareBlogAssetPaths);
 
     final posts = <BlogPost>[];
     for (final assetPath in markdownAssets) {
@@ -71,6 +71,19 @@ class GitHubBlogRepository {
   String _slugFromFileName(String name) {
     final dotIndex = name.lastIndexOf('.');
     return dotIndex == -1 ? name : name.substring(0, dotIndex);
+  }
+
+  int _compareBlogAssetPaths(String a, String b) {
+    final aName = a.split('/').last;
+    final bName = b.split('/').last;
+    final aNumber = int.tryParse(RegExp(r'^\d+').stringMatch(aName) ?? '');
+    final bNumber = int.tryParse(RegExp(r'^\d+').stringMatch(bName) ?? '');
+
+    if (aNumber != null && bNumber != null && aNumber != bNumber) {
+      return bNumber.compareTo(aNumber);
+    }
+
+    return b.compareTo(a);
   }
 
   String _normalizeSlug(String slug) {

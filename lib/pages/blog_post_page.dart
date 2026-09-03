@@ -5,6 +5,7 @@ import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:tirth_today/data/github_blog_repository.dart';
 import 'package:tirth_today/models/blog_post.dart';
 import 'package:tirth_today/utils/constants.dart';
+import 'package:tirth_today/widgets/twitter_embed.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
@@ -174,6 +175,8 @@ List<Widget> _buildContentWidgets(List<_BlogContentBlock> contentBlocks) {
     widgets.add(
       block.isYoutube
           ? _YoutubeEmbed(videoId: block.videoId!)
+          : block.twitterUrl != null
+          ? _TwitterEmbed(text: block.twitterText!, url: block.twitterUrl!)
           : _BlogMarkdown(markdown: block.markdown!),
     );
   }
@@ -226,6 +229,18 @@ class _BlogMarkdown extends StatelessWidget {
         }
       },
     );
+  }
+}
+
+class _TwitterEmbed extends StatelessWidget {
+  const _TwitterEmbed({required this.text, required this.url});
+
+  final String text;
+  final String url;
+
+  @override
+  Widget build(BuildContext context) {
+    return TwitterEmbed(text: text, url: url);
   }
 }
 
@@ -411,31 +426,50 @@ class _BlogContentBlock {
   const _BlogContentBlock.markdown(this.markdown)
     : videoId = null,
       isYoutube = false,
+      twitterUrl = null,
+      twitterText = null,
       detailsTitle = null,
       isDetailsEnd = false;
 
   const _BlogContentBlock.youtube(this.videoId)
     : markdown = null,
       isYoutube = true,
+      twitterUrl = null,
+      twitterText = null,
       detailsTitle = null,
       isDetailsEnd = false;
+
+  const _BlogContentBlock.twitter({
+    required this.twitterText,
+    required this.twitterUrl,
+  }) : markdown = null,
+       videoId = null,
+       isYoutube = false,
+       detailsTitle = null,
+       isDetailsEnd = false;
 
   const _BlogContentBlock.detailsStart(this.detailsTitle)
     : markdown = null,
       videoId = null,
       isYoutube = false,
+      twitterUrl = null,
+      twitterText = null,
       isDetailsEnd = false;
 
   const _BlogContentBlock.detailsEnd()
     : markdown = null,
       videoId = null,
       isYoutube = false,
+      twitterUrl = null,
+      twitterText = null,
       detailsTitle = null,
       isDetailsEnd = true;
 
   final String? markdown;
   final String? videoId;
   final bool isYoutube;
+  final String? twitterUrl;
+  final String? twitterText;
   final String? detailsTitle;
   final bool isDetailsEnd;
 }
@@ -489,12 +523,47 @@ List<_BlogContentBlock> _splitContentBlocks(String markdown) {
       continue;
     }
 
+    final twitterEmbed = _extractTwitterEmbed(trimmedLine);
+    if (twitterEmbed != null) {
+      flushMarkdown();
+      blocks.add(
+        _BlogContentBlock.twitter(
+          twitterText: twitterEmbed.text,
+          twitterUrl: twitterEmbed.url,
+        ),
+      );
+      continue;
+    }
+
     awaitingDetailsSummary = false;
     buffer.add(line);
   }
 
   flushMarkdown();
   return blocks;
+}
+
+class _TwitterEmbedData {
+  const _TwitterEmbedData({required this.text, required this.url});
+
+  final String text;
+  final String url;
+}
+
+_TwitterEmbedData? _extractTwitterEmbed(String line) {
+  if (!line.startsWith('<blockquote class="twitter-tweet">')) {
+    return null;
+  }
+
+  final textMatch = RegExp(r'<p[^>]*>(.*?)</p>').firstMatch(line);
+  final urlMatch = RegExp(r'<a href="(https://x\.com/[^\"]+)').firstMatch(line);
+  final text = textMatch?.group(1)?.replaceAll(RegExp(r'<[^>]+>'), '').trim();
+  final url = urlMatch?.group(1);
+  if (text == null || text.isEmpty || url == null || url.isEmpty) {
+    return null;
+  }
+
+  return _TwitterEmbedData(text: text, url: url);
 }
 
 String? _extractYoutubeVideoId(String line) {
