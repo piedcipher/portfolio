@@ -17,7 +17,6 @@ dependencies:
   just_audio:
   get_it:
   flutter_card_swiper:
-  flutter_drawing_board:
   flutter_markdown:
   youtube_player_iframe:
   pointer_interceptor:

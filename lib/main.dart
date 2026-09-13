@@ -118,6 +118,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _controller = GlobalKey<PageFlipWidgetState>();
+  bool _showRoughPage = false;
 
   @override
   void initState() {
@@ -128,26 +129,42 @@ class _MyHomePageState extends State<MyHomePage> {
     GetIt.I.registerSingleton<GlobalKey<PageFlipWidgetState>>(_controller);
   }
 
+  void _returnToPreviousPage() {
+    setState(() => _showRoughPage = false);
+    _controller.currentState?.previousPage();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return PageFlipWidget(
-      key: _controller,
-      backgroundColor: AppColors.notebookWhite,
-      onFlipStart: () async {
-        final audioPlayer = AudioPlayer();
-        await audioPlayer.setAsset('assets/page_flip.mp3');
-        await audioPlayer.play();
-        await audioPlayer.stop();
-      },
-      lastPage: RoughPage(),
-      children: <Widget>[
-        for (var i = 0; i < Pages.values.length; i++)
-          switch (Pages.values[i]) {
-            Pages.home => const HomePage(),
-            Pages.workExperience => const WorkExperiencePage(),
-            Pages.artPage => const ArtPage(),
-            Pages.artVideoPlayer => const ArtVideoPlayer(),
+    return Stack(
+      children: [
+        PageFlipWidget(
+          key: _controller,
+          backgroundColor: AppColors.notebookWhite,
+          onFlipStart: () async {
+            final audioPlayer = AudioPlayer();
+            await audioPlayer.setAsset('assets/page_flip.mp3');
+            await audioPlayer.play();
+            await audioPlayer.stop();
           },
+          onPageFlipped: (pageNumber) {
+            if (pageNumber == Pages.values.length) {
+              setState(() => _showRoughPage = true);
+            }
+          },
+          children: <Widget>[
+            for (var i = 0; i < Pages.values.length; i++)
+              switch (Pages.values[i]) {
+                Pages.home => const HomePage(),
+                Pages.workExperience => const WorkExperiencePage(),
+                Pages.artPage => const ArtPage(),
+                Pages.artVideoPlayer => const ArtVideoPlayer(),
+              },
+            const SizedBox.expand(),
+          ],
+        ),
+        if (_showRoughPage)
+          RoughPage(onReturnToPreviousPage: _returnToPreviousPage),
       ],
     );
   }
