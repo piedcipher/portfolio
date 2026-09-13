@@ -1,7 +1,5 @@
 import 'package:flutter_drawing_board/flutter_drawing_board.dart';
-import 'package:get_it/get_it.dart';
 import 'package:material_ui/material_ui.dart';
-import 'package:page_flip/page_flip.dart';
 import 'package:tirth_today/layouts/notebook_layout.dart';
 import 'package:tirth_today/utils/constants.dart';
 
