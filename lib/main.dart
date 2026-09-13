@@ -147,7 +147,6 @@ class _MyHomePageState extends State<MyHomePage> {
             Pages.workExperience => const WorkExperiencePage(),
             Pages.artPage => const ArtPage(),
             Pages.artVideoPlayer => const ArtVideoPlayer(),
-            Pages.roughPage => const RoughPage(),
           },
       ],
     );
