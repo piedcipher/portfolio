@@ -7,6 +7,7 @@ class AnimalsPage extends StatelessWidget {
 
   static const List<String> _assetNames = [
     'Black-Panther-1.jpg',
+    'Black-Panther-2.jpg',
     'Blr-White-1.jpg',
     'C-1.mp4',
     'Chansad-Red-1.jpg',
@@ -23,6 +24,7 @@ class AnimalsPage extends StatelessWidget {
     'Jodhpur-Red-1.jpg',
     'Jodhpur-Red-2.jpg',
     'Jodhpur-Red-3.mp4',
+    'Karnavati-1.jpg',
     'Nini-1.jpg',
     'Nini-2.jpg',
     'Nini-3.jpg',
@@ -42,6 +44,8 @@ class AnimalsPage extends StatelessWidget {
     'Supra-3.jpg',
     'Supra-4.jpg',
     'Supra-5.mp4',
+    'Supra-6.jpg',
+    'Supreme-1.jpg',
     'Tea-1.jpg',
     'Tea-2.jpg',
     'Vadu-1.jpg',
