@@ -5,9 +5,44 @@ import 'package:page_flip/page_flip.dart';
 import 'package:tirth_today/layouts/notebook_layout.dart';
 import 'package:tirth_today/pages/art_video_player_page.dart';
 import 'package:tirth_today/utils/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  Future<void> _showContactDialog(BuildContext context) async {
+    final shouldEmail = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Contact Me'),
+        content: const Text('Open your email app to send us a message.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Close'),
+          ),
+          FilledButton.icon(
+            onPressed: () => Navigator.of(context).pop(true),
+            icon: const Icon(Icons.email_outlined),
+            label: const Text('Send email'),
+          ),
+        ],
+      ),
+    );
+
+    if (shouldEmail != true) return;
+
+    final opened = await launchUrl(
+      Uri(scheme: 'mailto', path: 'piedcipher.dev@gmail.com'),
+      mode: LaunchMode.externalApplication,
+    );
+
+    if (!opened && context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Could not open your email app.')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -158,8 +193,12 @@ class HomePage extends StatelessWidget {
             ),
             Positioned(
               top: 12,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
+              left: 12,
+              right: 12,
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 8,
+                runSpacing: 8,
                 children: [
                   OutlinedButton.icon(
                     onPressed: () {
@@ -173,7 +212,6 @@ class HomePage extends StatelessWidget {
                       side: const BorderSide(color: AppColors.handwritingBlue),
                     ),
                   ),
-                  const SizedBox(width: 8),
                   OutlinedButton.icon(
                     onPressed: () {
                       Navigator.of(context).pushNamed('/flutter-job-board');
@@ -186,7 +224,6 @@ class HomePage extends StatelessWidget {
                       side: const BorderSide(color: AppColors.handwritingBlue),
                     ),
                   ),
-                  const SizedBox(width: 8),
                   OutlinedButton.icon(
                     onPressed: () {
                       Navigator.of(context).pushNamed('/animals');
@@ -197,6 +234,15 @@ class HomePage extends StatelessWidget {
                     ),
                     style: OutlinedButton.styleFrom(
                       side: const BorderSide(color: AppColors.handwritingBlue),
+                    ),
+                  ),
+                  FilledButton.icon(
+                    onPressed: () => _showContactDialog(context),
+                    icon: const Icon(Icons.mail_outline),
+                    label: const Text('Contact Me'),
+                    style: FilledButton.styleFrom(
+                      backgroundColor: AppColors.handwritingBlue,
+                      foregroundColor: Colors.white,
                     ),
                   ),
                 ],
