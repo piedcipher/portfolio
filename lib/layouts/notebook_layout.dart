@@ -6,6 +6,7 @@ class NotebookLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -13,22 +14,22 @@ class NotebookLayout extends StatelessWidget {
           children: [
             const SizedBox(width: 60),
             DecoratedBox(
-              decoration: BoxDecoration(color: AppColors.notebookRed),
+              decoration: BoxDecoration(color: palette.margin),
               child: const SizedBox(width: 1.5, height: double.infinity),
             ),
             const SizedBox(width: 5),
             DecoratedBox(
-              decoration: BoxDecoration(color: AppColors.notebookRed),
+              decoration: BoxDecoration(color: palette.margin),
               child: const SizedBox(width: 1.5, height: double.infinity),
             ),
             const Spacer(),
             DecoratedBox(
-              decoration: BoxDecoration(color: AppColors.notebookRed),
+              decoration: BoxDecoration(color: palette.margin),
               child: const SizedBox(width: 1.5, height: double.infinity),
             ),
             const SizedBox(width: 5),
             DecoratedBox(
-              decoration: BoxDecoration(color: AppColors.notebookRed),
+              decoration: BoxDecoration(color: palette.margin),
               child: const SizedBox(width: 1.5, height: double.infinity),
             ),
             const SizedBox(width: 60),
@@ -44,7 +45,7 @@ class NotebookLayout extends StatelessWidget {
                   children: [
                     const SizedBox(height: 40),
                     DecoratedBox(
-                      decoration: BoxDecoration(color: AppColors.notebookBlack),
+                      decoration: BoxDecoration(color: palette.rule),
                       child: const SizedBox(
                         width: double.infinity,
                         height: 1.5,
@@ -63,22 +64,22 @@ class NotebookLayout extends StatelessWidget {
           children: [
             const SizedBox(height: 60),
             DecoratedBox(
-              decoration: BoxDecoration(color: AppColors.notebookRed),
+              decoration: BoxDecoration(color: palette.margin),
               child: const SizedBox(height: 1.5, width: double.infinity),
             ),
             const SizedBox(height: 5),
             DecoratedBox(
-              decoration: BoxDecoration(color: AppColors.notebookRed),
+              decoration: BoxDecoration(color: palette.margin),
               child: const SizedBox(height: 1.5, width: double.infinity),
             ),
             const Spacer(),
             DecoratedBox(
-              decoration: BoxDecoration(color: AppColors.notebookRed),
+              decoration: BoxDecoration(color: palette.margin),
               child: const SizedBox(height: 1.5, width: double.infinity),
             ),
             const SizedBox(height: 5),
             DecoratedBox(
-              decoration: BoxDecoration(color: AppColors.notebookRed),
+              decoration: BoxDecoration(color: palette.margin),
               child: const SizedBox(height: 1.5, width: double.infinity),
             ),
             const SizedBox(height: 60),

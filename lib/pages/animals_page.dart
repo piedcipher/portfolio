@@ -71,10 +71,11 @@ class AnimalsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     final groups = _groupedAssets.entries;
 
     return Scaffold(
-      backgroundColor: AppColors.notebookWhite,
+      backgroundColor: palette.paper,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -89,12 +90,12 @@ class AnimalsPage extends StatelessWidget {
                       icon: const Icon(Icons.arrow_back),
                     ),
                     const SizedBox(width: 12),
-                    const Expanded(
+                    Expanded(
                       child: Text(
                         'Animals',
                         style: TextStyle(
                           fontSize: 36,
-                          color: AppColors.handwritingBlue,
+                          color: palette.ink,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -116,18 +117,18 @@ class AnimalsPage extends StatelessWidget {
                       const SizedBox(width: 8),
                       Text(
                         group.key,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 24,
-                          color: AppColors.handwritingBlue,
+                          color: palette.ink,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         '${group.value.length} photos',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 14,
-                          color: AppColors.handwritingDarkBlue,
+                          color: palette.mutedInk,
                         ),
                       ),
                     ],
@@ -221,7 +222,7 @@ class _AnimalMediaTileState extends State<_AnimalMediaTile> {
 
     if (controller == null) {
       return Material(
-        color: AppColors.handwritingDarkBlue,
+        color: context.palette.mutedInk,
         child: InkWell(
           onTap: _startVideo,
           child: const Center(

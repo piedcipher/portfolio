@@ -1,6 +1,8 @@
 # tirth.today
 my portfolio site
 
+Use the **Dark theme** / **Light theme** control on the home page to switch between themes.
+
 ## Screenshots
 
 | Desktop | Mobile |

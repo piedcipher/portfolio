@@ -50,12 +50,13 @@ class _FlutterJobBoardState extends State<FlutterJobBoard> {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     return Scaffold(
-      backgroundColor: AppColors.notebookWhite,
+      backgroundColor: palette.paper,
       appBar: AppBar(
         title: const Text('Flutter Job Board'),
-        backgroundColor: AppColors.notebookWhite,
-        foregroundColor: AppColors.handwritingBlue,
+        backgroundColor: palette.paper,
+        foregroundColor: palette.ink,
       ),
       body: Center(
         child: ConstrainedBox(
@@ -63,7 +64,7 @@ class _FlutterJobBoardState extends State<FlutterJobBoard> {
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Card(
-              color: Colors.white,
+              color: palette.surface,
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
@@ -74,7 +75,7 @@ class _FlutterJobBoardState extends State<FlutterJobBoard> {
                       'Curated Flutter opportunities',
                       style: Theme.of(context).textTheme.headlineSmall
                           ?.copyWith(
-                            color: AppColors.handwritingBlue,
+                            color: palette.ink,
                             fontWeight: FontWeight.w700,
                           ),
                     ),
@@ -85,7 +86,7 @@ class _FlutterJobBoardState extends State<FlutterJobBoard> {
                     const SizedBox(height: 16),
                     SelectableText(
                       _jobBoardUri.toString(),
-                      style: const TextStyle(color: AppColors.handwritingBlue),
+                      style: TextStyle(color: palette.ink),
                     ),
                     const SizedBox(height: 16),
                     Wrap(

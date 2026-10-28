@@ -12,6 +12,7 @@ class WorkExperiencePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     final experiences = [
       {
         "role": "Developer Support Engineer",
@@ -58,7 +59,7 @@ class WorkExperiencePage extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: AppColors.notebookWhite,
+      backgroundColor: palette.paper,
       floatingActionButton: FloatingActionButton.extended(
         heroTag: 'work_next_page_fab',
         onPressed: () {
@@ -78,15 +79,15 @@ class WorkExperiencePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const SizedBox(height: 10),
-                const Text(
+                Text(
                   "Work Experience",
                   style: TextStyle(
                     fontSize: 32,
-                    color: AppColors.handwritingBlue,
+                    color: palette.ink,
                     fontWeight: FontWeight.w500,
                     decoration: TextDecoration.underline,
                     decorationStyle: TextDecorationStyle.dotted,
-                    decorationColor: AppColors.handwritingBlue,
+                    decorationColor: palette.ink,
                     decorationThickness: .8,
                   ),
                 ),
@@ -150,6 +151,7 @@ class StickyNoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     final stickyColors = [
       Colors.deepOrange.shade100,
       Colors.blue.shade100,
@@ -179,10 +181,10 @@ class StickyNoteCard extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,
-              color: AppColors.handwritingBlue,
+              color: palette.ink,
             ),
           ),
           const SizedBox(height: 4),
@@ -202,7 +204,7 @@ class StickyNoteCard extends StatelessWidget {
                       text: companyName,
                       style: GoogleFonts.pangolin().copyWith(
                         fontSize: 16,
-                        color: AppColors.handwritingBlue,
+                        color: palette.ink,
                         decoration: TextDecoration.underline,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1.2,
@@ -219,7 +221,7 @@ class StickyNoteCard extends StatelessWidget {
                       text: " • ${subtitle.split(" • ")[1]}",
                       style: GoogleFonts.pangolin().copyWith(
                         fontSize: 16,
-                        color: AppColors.handwritingBlue,
+                        color: palette.ink,
                       ),
                     ),
                   ],
@@ -230,11 +232,7 @@ class StickyNoteCard extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             description,
-            style: const TextStyle(
-              fontSize: 16,
-              height: 1.4,
-              color: AppColors.handwritingBlue,
-            ),
+            style: TextStyle(fontSize: 16, height: 1.4, color: palette.ink),
           ),
         ],
       ),

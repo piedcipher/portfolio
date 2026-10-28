@@ -119,8 +119,9 @@ class _ArtPageState extends State<ArtPage> {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     return Scaffold(
-      backgroundColor: AppColors.notebookWhite,
+      backgroundColor: palette.paper,
       floatingActionButton: FloatingActionButton.extended(
         heroTag: 'art_next_page_fab',
         onPressed: () {
@@ -140,15 +141,15 @@ class _ArtPageState extends State<ArtPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const SizedBox(height: 10),
-                const Text(
+                Text(
                   "Art w Flutter",
                   style: TextStyle(
                     fontSize: 32,
-                    color: AppColors.handwritingBlue,
+                    color: palette.ink,
                     fontWeight: FontWeight.w500,
                     decoration: TextDecoration.underline,
                     decorationStyle: TextDecorationStyle.dotted,
-                    decorationColor: AppColors.handwritingBlue,
+                    decorationColor: palette.ink,
                     decorationThickness: .8,
                   ),
                 ),

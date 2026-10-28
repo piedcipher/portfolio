@@ -20,24 +20,50 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  ThemeMode _themeMode = ThemeMode.light;
+
+  void _toggleTheme() {
+    setState(() {
+      _themeMode = _themeMode == ThemeMode.light
+          ? ThemeMode.dark
+          : ThemeMode.light;
+    });
+  }
+
+  ThemeData _buildTheme(AppPalette palette, Brightness brightness) {
+    return ThemeData(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: palette.ink,
+        brightness: brightness,
+      ),
+      scaffoldBackgroundColor: palette.paper,
+      extensions: [palette],
+      fontFamily: GoogleFonts.pangolin().fontFamily,
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: palette.ink,
+        foregroundColor: palette.paper,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: Data.name,
       initialRoute: '/',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.notebookWhite),
-        fontFamily: GoogleFonts.pangolin().fontFamily,
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: AppColors.handwritingBlue,
-          foregroundColor: Colors.white,
-        ),
-      ),
+      theme: _buildTheme(AppPalette.light, Brightness.light),
+      darkTheme: _buildTheme(AppPalette.dark, Brightness.dark),
+      themeMode: _themeMode,
       routes: {
-        '/': (_) => const MyHomePage(),
+        '/': (_) => MyHomePage(onToggleTheme: _toggleTheme),
         '/flutter-job-board': (_) => DeferredPage(
           loadLibrary: flutter_job_board.loadLibrary,
           builder: (_) => flutter_job_board.FlutterJobBoard(),
@@ -80,8 +106,9 @@ class MyApp extends StatelessWidget {
 
         return null;
       },
-      onUnknownRoute: (_) =>
-          MaterialPageRoute(builder: (_) => const MyHomePage()),
+      onUnknownRoute: (_) => MaterialPageRoute(
+        builder: (_) => MyHomePage(onToggleTheme: _toggleTheme),
+      ),
     );
   }
 }
@@ -91,19 +118,20 @@ class BlogNotFoundPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     return Scaffold(
-      backgroundColor: AppColors.notebookWhite,
+      backgroundColor: palette.paper,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
+              Text(
                 'Post not found',
                 style: TextStyle(
                   fontSize: 28,
-                  color: AppColors.handwritingBlue,
+                  color: palette.ink,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -127,7 +155,9 @@ class BlogNotFoundPage extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({super.key, required this.onToggleTheme});
+
+  final VoidCallback onToggleTheme;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -153,11 +183,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     return Stack(
       children: [
         PageFlipWidget(
           key: _controller,
-          backgroundColor: AppColors.notebookWhite,
+          backgroundColor: palette.paper,
           onFlipStart: () async {
             final audioPlayer = AudioPlayer();
             await audioPlayer.setAsset('assets/page_flip.mp3');
@@ -172,7 +203,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             for (var i = 0; i < Pages.values.length; i++)
               switch (Pages.values[i]) {
-                Pages.home => const HomePage(),
+                Pages.home => HomePage(onToggleTheme: widget.onToggleTheme),
                 Pages.workExperience => const WorkExperiencePage(),
                 Pages.artPage => const ArtPage(),
                 Pages.artVideoPlayer => const DeferredArtVideoPlayer(),

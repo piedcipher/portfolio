@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:tirth_today/utils/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -10,8 +10,9 @@ class TwitterEmbed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = Theme.of(context).extension<AppPalette>()!;
     return Card(
-      color: Colors.white.withAlpha(230),
+      color: palette.surface,
       margin: EdgeInsets.zero,
       child: InkWell(
         onTap: () => launchUrl(Uri.parse(url)),
@@ -25,10 +26,10 @@ class TwitterEmbed extends StatelessWidget {
                 style: const TextStyle(fontSize: 16, height: 1.45),
               ),
               const SizedBox(height: 12),
-              const Text(
+              Text(
                 'Tirth  ·  View on X',
                 style: TextStyle(
-                  color: AppColors.handwritingBlue,
+                  color: palette.ink,
                   fontWeight: FontWeight.w600,
                 ),
               ),

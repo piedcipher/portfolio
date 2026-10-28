@@ -18,8 +18,9 @@ class BlogPostPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     return Scaffold(
-      backgroundColor: AppColors.notebookWhite,
+      backgroundColor: palette.paper,
       body: SafeArea(
         child: SelectionArea(
           child: Align(
@@ -41,12 +42,12 @@ class BlogPostPage extends StatelessWidget {
                       icon: const Icon(Icons.arrow_back),
                     ),
                     const SizedBox(width: 12),
-                    const Expanded(
+                    Expanded(
                       child: Text(
                         'Blog Post',
                         style: TextStyle(
                           fontSize: 24,
-                          color: AppColors.handwritingBlue,
+                          color: palette.ink,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -97,6 +98,7 @@ class _BlogPostBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     final contentBlocks = _splitContentBlocks(post.markdown);
 
     return Column(
@@ -104,9 +106,9 @@ class _BlogPostBody extends StatelessWidget {
       children: [
         Text(
           '${_formatDate(post.publishedOn)}  •  ${post.readTimeMinutes} min read',
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 13,
-            color: AppColors.handwritingDarkBlue,
+            color: palette.mutedInk,
           ),
         ),
         if (post.tags.isNotEmpty) ...[
@@ -118,7 +120,7 @@ class _BlogPostBody extends StatelessWidget {
               for (final tag in post.tags)
                 ActionChip(
                   label: Text(tag),
-                  backgroundColor: Colors.white.withAlpha(230),
+                  backgroundColor: palette.surface,
                   onPressed: () => onTagTap(tag),
                 ),
             ],
@@ -397,21 +399,22 @@ class _CollapsibleSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     return Card(
-      color: Colors.white.withAlpha(230),
+      color: palette.surface,
       margin: EdgeInsets.zero,
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
           tilePadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-          iconColor: AppColors.handwritingBlue,
-          collapsedIconColor: AppColors.handwritingBlue,
+          iconColor: palette.ink,
+          collapsedIconColor: palette.ink,
           title: Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
-              color: AppColors.handwritingBlue,
+              color: palette.ink,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -626,13 +629,14 @@ class _BlogPostNotFound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    final palette = context.palette;
+    return Padding(
       padding: EdgeInsets.only(top: 16),
       child: Text(
         'This post could not be loaded from local assets.',
         style: TextStyle(
           fontSize: 16,
-          color: AppColors.handwritingDarkBlue,
+          color: palette.mutedInk,
           fontWeight: FontWeight.w600,
         ),
       ),

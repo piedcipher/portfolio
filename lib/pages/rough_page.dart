@@ -20,8 +20,8 @@ class _RoughPageState extends State<RoughPage> {
   void _startStroke(PointerDownEvent event) {
     final stroke = _Stroke(
       color: _selectedTool == _SketchTool.eraser
-          ? AppColors.notebookWhite
-          : AppColors.handwritingBlue,
+          ? context.palette.paper
+          : context.palette.ink,
       width: switch (_selectedTool) {
         _SketchTool.pen => 4,
         _SketchTool.brush => 10,
@@ -87,8 +87,9 @@ class _RoughPageState extends State<RoughPage> {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     return Scaffold(
-      backgroundColor: AppColors.notebookWhite,
+      backgroundColor: palette.paper,
       body: Stack(
         children: [
           const NotebookLayout(),
@@ -96,15 +97,15 @@ class _RoughPageState extends State<RoughPage> {
             child: Column(
               children: [
                 const SizedBox(height: 10),
-                const Text(
+                Text(
                   "Rough",
                   style: TextStyle(
                     fontSize: 32,
-                    color: AppColors.handwritingBlue,
+                    color: palette.ink,
                     fontWeight: FontWeight.w500,
                     decoration: TextDecoration.underline,
                     decorationStyle: TextDecorationStyle.dotted,
-                    decorationColor: AppColors.handwritingBlue,
+                    decorationColor: palette.ink,
                     decorationThickness: .8,
                   ),
                 ),
@@ -113,10 +114,10 @@ class _RoughPageState extends State<RoughPage> {
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 74),
                     decoration: BoxDecoration(
-                      color: Colors.white.withAlpha(160),
+                      color: palette.surface,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
-                        color: AppColors.handwritingBlue.withAlpha(70),
+                        color: palette.ink.withAlpha(70),
                         width: 1,
                       ),
                     ),

@@ -8,7 +8,9 @@ import 'package:tirth_today/widgets/deferred_art_video_player.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, required this.onToggleTheme});
+
+  final VoidCallback onToggleTheme;
 
   Future<void> _showContactDialog(BuildContext context) async {
     final shouldEmail = await showDialog<bool>(
@@ -46,6 +48,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
+    final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         heroTag: 'home_next_page_fab',
@@ -58,7 +63,7 @@ class HomePage extends StatelessWidget {
         label: Text('Next Page'),
         tooltip: 'Page can be swiped as well',
       ),
-      backgroundColor: AppColors.notebookWhite,
+      backgroundColor: palette.paper,
       body: Center(
         child: Stack(
           alignment: Alignment.center,
@@ -67,27 +72,27 @@ class HomePage extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   Data.name,
                   style: TextStyle(
                     fontSize: 32,
-                    color: AppColors.handwritingBlue,
+                    color: palette.ink,
                     fontWeight: FontWeight.w500,
                     decoration: TextDecoration.underline,
                     decorationStyle: TextDecorationStyle.dotted,
-                    decorationColor: AppColors.handwritingBlue,
+                    decorationColor: palette.ink,
                     decorationThickness: .8,
                   ),
                 ),
                 const SizedBox(height: 12),
-                const Text(
+                Text(
                   Data.tagline,
                   style: TextStyle(
                     fontSize: 18,
-                    color: AppColors.handwritingBlue,
+                    color: palette.ink,
                     decoration: TextDecoration.underline,
                     decorationStyle: TextDecorationStyle.wavy,
-                    decorationColor: AppColors.handwritingBlue,
+                    decorationColor: palette.ink,
                     decorationThickness: .8,
                   ),
                 ),
@@ -97,7 +102,7 @@ class HomePage extends StatelessWidget {
                   overflowSpacing: 8,
                   children: [
                     IconButton(
-                      color: AppColors.handwritingBlue,
+                      color: palette.ink,
                       tooltip: Socials.github.tooltip,
                       icon: const FaIcon(FontAwesomeIcons.github),
                       onPressed: () {
@@ -105,7 +110,7 @@ class HomePage extends StatelessWidget {
                       },
                     ),
                     IconButton(
-                      color: AppColors.handwritingBlue,
+                      color: palette.ink,
                       tooltip: Socials.stackOverflow.tooltip,
                       icon: const FaIcon(FontAwesomeIcons.stackOverflow),
                       onPressed: () {
@@ -113,7 +118,7 @@ class HomePage extends StatelessWidget {
                       },
                     ),
                     IconButton(
-                      color: AppColors.handwritingBlue,
+                      color: palette.ink,
                       tooltip: Socials.medium.tooltip,
                       icon: const FaIcon(FontAwesomeIcons.medium),
                       onPressed: () {
@@ -121,7 +126,7 @@ class HomePage extends StatelessWidget {
                       },
                     ),
                     IconButton(
-                      color: AppColors.handwritingBlue,
+                      color: palette.ink,
                       tooltip: Socials.twitter.tooltip,
                       icon: const FaIcon(FontAwesomeIcons.xTwitter),
                       onPressed: () {
@@ -129,7 +134,7 @@ class HomePage extends StatelessWidget {
                       },
                     ),
                     IconButton(
-                      color: AppColors.handwritingBlue,
+                      color: palette.ink,
                       tooltip: Socials.linkedIn.tooltip,
                       icon: const FaIcon(FontAwesomeIcons.linkedinIn),
                       onPressed: () {
@@ -144,7 +149,7 @@ class HomePage extends StatelessWidget {
                   overflowSpacing: 8,
                   children: [
                     IconButton(
-                      color: AppColors.handwritingBlue,
+                      color: palette.ink,
                       tooltip: Socials.speakerDeck.tooltip,
                       icon: const FaIcon(FontAwesomeIcons.speakerDeck),
                       onPressed: () {
@@ -152,7 +157,7 @@ class HomePage extends StatelessWidget {
                       },
                     ),
                     IconButton(
-                      color: AppColors.handwritingBlue,
+                      color: palette.ink,
                       tooltip: Socials.resume.tooltip,
                       icon: const FaIcon(FontAwesomeIcons.file),
                       onPressed: () {
@@ -160,22 +165,21 @@ class HomePage extends StatelessWidget {
                       },
                     ),
                     IconButton(
-                      color: AppColors.handwritingBlue,
+                      color: palette.ink,
                       tooltip: Socials.art.tooltip,
                       icon: const FaIcon(FontAwesomeIcons.paintbrush),
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const DeferredArtVideoPlayer(
-                                  startImmediately: true,
-                                ),
+                            builder: (context) => const DeferredArtVideoPlayer(
+                              startImmediately: true,
+                            ),
                           ),
                         );
                       },
                     ),
                     IconButton(
-                      color: AppColors.handwritingBlue,
+                      color: palette.ink,
                       tooltip: Socials.unsplash.tooltip,
                       icon: const FaIcon(FontAwesomeIcons.unsplash),
                       onPressed: () {
@@ -183,7 +187,7 @@ class HomePage extends StatelessWidget {
                       },
                     ),
                     IconButton(
-                      color: AppColors.handwritingBlue,
+                      color: palette.ink,
                       tooltip: Socials.teampixel.tooltip,
                       icon: const FaIcon(FontAwesomeIcons.cameraRetro),
                       onPressed: () {
@@ -204,39 +208,45 @@ class HomePage extends StatelessWidget {
                 runSpacing: 8,
                 children: [
                   OutlinedButton.icon(
+                    onPressed: onToggleTheme,
+                    icon: Icon(
+                      isDarkTheme
+                          ? Icons.light_mode_outlined
+                          : Icons.dark_mode_outlined,
+                    ),
+                    label: Text(isDarkTheme ? 'Light theme' : 'Dark theme'),
+                  ),
+                  OutlinedButton.icon(
                     onPressed: () {
                       Navigator.of(context).pushNamed('/blog');
                     },
-                    label: const Text(
-                      'Blog',
-                      style: TextStyle(color: AppColors.handwritingBlue),
-                    ),
+                    label: Text('Blog', style: TextStyle(color: palette.ink)),
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: AppColors.handwritingBlue),
+                      side: BorderSide(color: palette.ink),
                     ),
                   ),
                   OutlinedButton.icon(
                     onPressed: () {
                       Navigator.of(context).pushNamed('/flutter-job-board');
                     },
-                    label: const Text(
+                    label: Text(
                       'Job Board',
-                      style: TextStyle(color: AppColors.handwritingBlue),
+                      style: TextStyle(color: palette.ink),
                     ),
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: AppColors.handwritingBlue),
+                      side: BorderSide(color: palette.ink),
                     ),
                   ),
                   OutlinedButton.icon(
                     onPressed: () {
                       Navigator.of(context).pushNamed('/animals');
                     },
-                    label: const Text(
+                    label: Text(
                       'Animals',
-                      style: TextStyle(color: AppColors.handwritingBlue),
+                      style: TextStyle(color: palette.ink),
                     ),
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: AppColors.handwritingBlue),
+                      side: BorderSide(color: palette.ink),
                     ),
                   ),
                   FilledButton.icon(
@@ -244,8 +254,8 @@ class HomePage extends StatelessWidget {
                     icon: const Icon(Icons.mail_outline),
                     label: const Text('Contact Me'),
                     style: FilledButton.styleFrom(
-                      backgroundColor: AppColors.handwritingBlue,
-                      foregroundColor: Colors.white,
+                      backgroundColor: palette.ink,
+                      foregroundColor: palette.paper,
                     ),
                   ),
                 ],

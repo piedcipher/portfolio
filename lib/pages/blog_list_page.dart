@@ -11,10 +11,11 @@ class BlogListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     final selectedTag = _normalizeTag(initialTag);
 
     return Scaffold(
-      backgroundColor: AppColors.notebookWhite,
+      backgroundColor: palette.paper,
       body: SafeArea(
         child: Align(
           alignment: Alignment.topCenter,
@@ -29,12 +30,12 @@ class BlogListPage extends StatelessWidget {
                     icon: const Icon(Icons.arrow_back),
                   ),
                   const SizedBox(width: 12),
-                  const Expanded(
+                  Expanded(
                     child: Text(
                       'Blog',
                       style: TextStyle(
                         fontSize: 36,
-                        color: AppColors.handwritingBlue,
+                        color: palette.ink,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -48,16 +49,16 @@ class BlogListPage extends StatelessWidget {
                   runSpacing: 8,
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       'Filtering by:',
                       style: TextStyle(
                         fontSize: 14,
-                        color: AppColors.handwritingDarkBlue,
+                        color: palette.mutedInk,
                       ),
                     ),
                     Chip(
                       label: Text(selectedTag),
-                      backgroundColor: Colors.white.withAlpha(230),
+                      backgroundColor: palette.surface,
                     ),
                     TextButton(
                       onPressed: () => Navigator.of(
@@ -145,14 +146,15 @@ class _BlogListError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
         Text(
           'Could not load posts from local assets.',
           style: TextStyle(
             fontSize: 16,
-            color: AppColors.handwritingDarkBlue,
+            color: palette.mutedInk,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -173,24 +175,25 @@ class _BlogCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.palette;
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: ListTile(
-        tileColor: Colors.white.withAlpha(230),
+        tileColor: palette.surface,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         title: Text(
           post.title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 20,
-            color: AppColors.handwritingBlue,
+            color: palette.ink,
             fontWeight: FontWeight.w600,
           ),
         ),
         subtitle: Text(
           '${_formatDate(post.publishedOn)}  •  ${post.readTimeMinutes} min read',
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 13,
-            color: AppColors.handwritingDarkBlue,
+            color: palette.mutedInk,
           ),
         ),
         isThreeLine: post.tags.isNotEmpty,
