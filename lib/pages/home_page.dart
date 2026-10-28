@@ -3,8 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:page_flip/page_flip.dart';
 import 'package:tirth_today/layouts/notebook_layout.dart';
-import 'package:tirth_today/pages/art_video_player_page.dart';
 import 'package:tirth_today/utils/constants.dart';
+import 'package:tirth_today/widgets/deferred_art_video_player.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
@@ -166,7 +166,10 @@ class HomePage extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const ArtVideoPlayer(),
+                            builder: (context) =>
+                                const DeferredArtVideoPlayer(
+                                  startImmediately: true,
+                                ),
                           ),
                         );
                       },

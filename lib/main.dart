@@ -3,16 +3,18 @@ import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:page_flip/page_flip.dart';
-import 'package:tirth_today/pages/animals_page.dart';
+import 'package:tirth_today/pages/animals_page.dart' deferred as animals;
 import 'package:tirth_today/pages/art_page.dart';
-import 'package:tirth_today/pages/art_video_player_page.dart';
-import 'package:tirth_today/pages/blog_list_page.dart';
-import 'package:tirth_today/pages/blog_post_page.dart';
-import 'package:tirth_today/pages/flutter_job_board.dart';
+import 'package:tirth_today/pages/blog_list_page.dart' deferred as blog_list;
+import 'package:tirth_today/pages/blog_post_page.dart' deferred as blog_post;
+import 'package:tirth_today/pages/flutter_job_board.dart'
+    deferred as flutter_job_board;
 import 'package:tirth_today/pages/home_page.dart';
 import 'package:tirth_today/pages/rough_page.dart';
 import 'package:tirth_today/pages/work_experience_page.dart';
 import 'package:tirth_today/utils/constants.dart';
+import 'package:tirth_today/widgets/deferred_art_video_player.dart';
+import 'package:tirth_today/widgets/deferred_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,9 +38,18 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (_) => const MyHomePage(),
-        '/flutter-job-board': (_) => const FlutterJobBoard(),
-        '/blog': (_) => const BlogListPage(),
-        '/animals': (_) => const AnimalsPage(),
+        '/flutter-job-board': (_) => DeferredPage(
+          loadLibrary: flutter_job_board.loadLibrary,
+          builder: (_) => flutter_job_board.FlutterJobBoard(),
+        ),
+        '/blog': (_) => DeferredPage(
+          loadLibrary: blog_list.loadLibrary,
+          builder: (_) => blog_list.BlogListPage(),
+        ),
+        '/animals': (_) => DeferredPage(
+          loadLibrary: animals.loadLibrary,
+          builder: (_) => animals.AnimalsPage(),
+        ),
       },
       onGenerateRoute: (settings) {
         final routeName = settings.name ?? '/';
@@ -48,7 +59,10 @@ class MyApp extends StatelessWidget {
         if (normalizedPath == '/blog') {
           final selectedTag = routeUri?.queryParameters['tag'];
           return MaterialPageRoute(
-            builder: (_) => BlogListPage(initialTag: selectedTag),
+            builder: (_) => DeferredPage(
+              loadLibrary: blog_list.loadLibrary,
+              builder: (_) => blog_list.BlogListPage(initialTag: selectedTag),
+            ),
             settings: settings,
           );
         }
@@ -56,7 +70,10 @@ class MyApp extends StatelessWidget {
         if (normalizedPath.startsWith('/blog/')) {
           final slug = normalizedPath.substring('/blog/'.length);
           return MaterialPageRoute(
-            builder: (_) => BlogPostPage(slug: slug),
+            builder: (_) => DeferredPage(
+              loadLibrary: blog_post.loadLibrary,
+              builder: (_) => blog_post.BlogPostPage(slug: slug),
+            ),
             settings: settings,
           );
         }
@@ -158,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Pages.home => const HomePage(),
                 Pages.workExperience => const WorkExperiencePage(),
                 Pages.artPage => const ArtPage(),
-                Pages.artVideoPlayer => const ArtVideoPlayer(),
+                Pages.artVideoPlayer => const DeferredArtVideoPlayer(),
               },
             const SizedBox.expand(),
           ],
