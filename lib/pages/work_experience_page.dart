@@ -19,7 +19,7 @@ class WorkExperiencePage extends StatelessWidget {
         "company": "Self Employed",
         "duration": "May 2026 - Present",
         "description":
-            "Built a static website for a PTFE manufacturer and set up a blog for my own site. Contributed to the open source Flutter SDK and added Gujarati translations to ente.io.",
+            "Built a static website for a PTFE manufacturer and set up a blog for my own site. Contributed to the open source Flutter SDK and added Gujarati translations to ente.io. I also took a short break during this period and traveled to Hyderabad and Goa.",
       },
       {
         "role": "Developer Support Engineer",
