@@ -15,6 +15,13 @@ class WorkExperiencePage extends StatelessWidget {
     final palette = context.palette;
     final experiences = [
       {
+        "role": "Freelance Software Engineer",
+        "company": "Self Employed",
+        "duration": "May 2026 - Present",
+        "description":
+            "Built a static website for a PTFE manufacturer and set up a blog for my own site. Contributed to the open source Flutter SDK and added Gujarati translations to ente.io.",
+      },
+      {
         "role": "Developer Support Engineer",
         "company": "Nevercode HQ / Codemagic",
         "duration": "Feb 2026 - Apr 2026",
@@ -103,7 +110,8 @@ class WorkExperiencePage extends StatelessWidget {
                           title: item["role"]!,
                           subtitle: "${item["company"]} • ${item["duration"]}",
                           description: item["description"]!,
-                          colorIndex: index,
+                          colorIndex: index - 1,
+                          color: index == 0 ? Colors.teal.shade100 : null,
                         ),
                       );
                     },
@@ -123,6 +131,7 @@ class StickyNoteCard extends StatelessWidget {
   final String subtitle;
   final String description;
   final int colorIndex;
+  final Color? color;
 
   StickyNoteCard({
     super.key,
@@ -130,6 +139,7 @@ class StickyNoteCard extends StatelessWidget {
     required this.subtitle,
     required this.description,
     required this.colorIndex,
+    this.color,
   });
 
   final Map<String, String> companyUrls = {
@@ -161,7 +171,7 @@ class StickyNoteCard extends StatelessWidget {
       Colors.purple.shade100,
     ];
 
-    final color = stickyColors[colorIndex % stickyColors.length];
+    final color = this.color ?? stickyColors[colorIndex % stickyColors.length];
     final companyName = subtitle.split(" • ")[0];
     final companyUrl = companyUrls[companyName];
 
