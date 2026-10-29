@@ -75,6 +75,18 @@
 
   <title>Tirth Patel | Software Engineer, Photographer &amp; Artist</title>
   <link rel="manifest" href="manifest.json">
+  <script>
+    const titleFrames = [
+      '👋 Tirth Patel | Software Engineer, Photographer & Artist',
+      'Tirth 👋 Patel | Software Engineer, Photographer & Artist',
+      'Tirth Patel 👋 | Software Engineer, Photographer & Artist',
+    ];
+    let titleFrame = 0;
+    setInterval(() => {
+      document.title = titleFrames[titleFrame];
+      titleFrame = (titleFrame + 1) % titleFrames.length;
+    }, 700);
+  </script>
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
