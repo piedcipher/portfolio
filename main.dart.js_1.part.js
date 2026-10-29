@@ -468,7 +468,7 @@ if(d==null){x=b7.geI()
 d=x==null?b3:x.dZ(k)}b2.a.toString
 a0=b3
 if(v===!0){x=h.a
-a0=new A.Pa(D.a_r,b3,b3,D.Me,b3,b3,b3,b3,B.ro(b3,b3,b3,b3,b3,b3,b3,b3,b3,b3,x==null?24:x,b3,b3,b3,b3,b3,b3),b3,b3,b3)}else{if(u)x=b3
+a0=new A.Pa(D.a_s,b3,b3,D.Mf,b3,b3,b3,b3,B.ro(b3,b3,b3,b3,b3,b3,b3,b3,b3,b3,x==null?24:x,b3,b3,b3,b3,b3,b3),b3,b3,b3)}else{if(u)x=b3
 else x=b9.gMF()||b9.pO$>0
 if(x===!0)a0=t===!0?D.Kg:D.HV}if(a0!=null){if(h.i(0,b7.gfZ()))a1=b5
 else{a2=B.ro(b3,b3,b3,b3,b3,b3,b3,h.f,b3,b3,h.a,b3,b3,b3,b3,b3,b3)
@@ -486,7 +486,7 @@ break A}if(C.w===a5||C.al===a5)break A}a3=B.bU(b3,b3,b3,a4,!1,b3,!1,!1,b3,b3,!0,
 d.toString
 a3=A.b37(B.jN(a3,b3,C.c7,!1,d,b3,b3,C.aO),1.34)
 if(w===!0){x=h.a
-a6=new A.Pl(b3,b3,b3,D.N5,b3,b3,b3,b3,B.ro(b3,b3,b3,b3,b3,b3,b3,b3,b3,b3,x==null?24:x,b3,b3,b3,b3,b3,b3),b3,b3,b3)}else a6=b3
+a6=new A.Pl(b3,b3,b3,D.N6,b3,b3,b3,b3,B.ro(b3,b3,b3,b3,b3,b3,b3,b3,b3,b3,x==null?24:x,b3,b3,b3,b3,b3,b3),b3,b3,b3)}else a6=b3
 if(a6!=null){if(f.i(0,b7.gmi()))a7=b5
 else{a8=B.ro(b3,b3,b3,b3,b3,b3,b3,f.f,b3,b3,f.a,b3,b3,b3,b3,b3,b3)
 x=b5.a
@@ -710,7 +710,7 @@ k=o.x
 if(k==null)k=C.aK
 j=r
 i=$.aOu()
-m=E.b1d(g,!1,C.fg,A.bcm(),l,q,g,u,v,t,2,C.an,!0,x,!1,h.x,i,o.Q,g,h.gak8(),h.gake(),w,!0,!0,g,g,p,j,g,g,!1,m,F.a_t,n,k,g,o.at,g,o.as,g)
+m=E.b1d(g,!1,C.fg,A.bcm(),l,q,g,u,v,t,2,C.an,!0,x,!1,h.x,i,o.Q,g,h.gak8(),h.gake(),w,!0,!0,g,g,p,j,g,g,!1,m,F.a_u,n,k,g,o.at,g,o.as,g)
 h.a.toString
 l=h.r
 l===$&&B.a()
@@ -728,7 +728,7 @@ return B.l(B.uV($.aK1(),C.qN,"_blank"),$async$AU)
 case 3:t=e
 if(u.c==null){x=1
 break}u.a5(new A.aze(u))
-if(!t)u.c.aj(y.q).f.FN(D.a_d)
+if(!t)u.c.aj(y.q).f.FN(D.a_e)
 case 1:return B.p(v,w)}})
 return B.q($async$AU,w)},
 zX(){var x=0,w=B.r(y.H),v,u=this,t
@@ -737,7 +737,7 @@ for(;;)switch(x){case 0:x=3
 return B.l(E.Bw(new E.qI($.aK1().k(0))),$async$zX)
 case 3:t=u.c
 if(t==null){x=1
-break}t.aj(y.q).f.FN(D.a_f)
+break}t.aj(y.q).f.FN(D.a_g)
 case 1:return B.p(v,w)}})
 return B.q($async$zX,w)},
 J(d){var x,w,v,u,t,s,r=null,q=y.W.a(B.W(d).c.j(0,B.b5(y.N))),p=q.a,o=q.d,n=q.f,m=B.W(d).ok.f
@@ -746,9 +746,9 @@ x=$.aK1().k(0)
 w=B.cS(r,r,o,r,r,r,r,r,r,r,r,r,r,r,r,r,r,!0,r,r,r,r,r,r,r,r)
 v=this.d
 u=v?r:this.ganT()
-t=v?D.ZW:D.Or
+t=v?D.ZX:D.Os
 s=y.p
-return B.k8(new A.AT(D.a2_,p,o,new A.a0X(r,r,1/0,56),r),p,B.eX(new B.eD(D.Il,new B.bz(F.ld,E.aPP(new B.bz(F.ld,B.dW(B.c([m,C.bO,D.a1R,C.jI,new A.FP(x,w,r),C.jI,B.u7(C.aq,B.c([B.aKY(t,B.bX(v?"Opening...":"Open Job Board",r,r,r),u,r),B.Sc(D.Oq,D.a1P,this.gaeT(),r)],s),C.eF,10,10)],s),C.b9,C.Y,C.bp),r),n,r),r),r),r,r),r)}}
+return B.k8(new A.AT(D.a20,p,o,new A.a0X(r,r,1/0,56),r),p,B.eX(new B.eD(D.Il,new B.bz(F.ld,E.aPP(new B.bz(F.ld,B.dW(B.c([m,C.bO,D.a1S,C.jI,new A.FP(x,w,r),C.jI,B.u7(C.aq,B.c([B.aKY(t,B.bX(v?"Opening...":"Open Job Board",r,r,r),u,r),B.Sc(D.Or,D.a1Q,this.gaeT(),r)],s),C.eF,10,10)],s),C.b9,C.Y,C.bp),r),n,r),r),r),r,r),r)}}
 var z=a.updateTypes(["~()","a6<~>()","~(f5)","~(ng)","~(fD,jh?)","e(S,o7)"])
 A.akd.prototype={
 $1(d){var x=B.bh(d,null,y.w).w
@@ -772,7 +772,7 @@ A.a9H.prototype={
 $1(d){return d==null?null:d.b},
 $S:77}
 A.a9I.prototype={
-$1(d){return C.NU},
+$1(d){return C.NV},
 $S:66}
 A.a9J.prototype={
 $1(d){return"Close"},
@@ -854,27 +854,27 @@ return{P:x("b_1"),i:x("AR<lr>"),N:x("eC"),k:x("aa"),G:x("F"),v:x("da"),Z:x("m8")
 D.HV=new A.Na(F.Cz,null,null,D.HU,null,null,null,null,null,null,null,null)
 D.Il=new B.aa(0,720,0,1/0)
 D.Kf=new A.Ob(null)
-D.Kg=new A.Oa(C.a_p,null,null,D.Kf,null,null,null,null,null,null,null,null)
-D.Me=new A.Pb(null)
-D.N5=new A.Pm(null)
+D.Kg=new A.Oa(C.a_q,null,null,D.Kf,null,null,null,null,null,null,null,null)
+D.Mf=new A.Pb(null)
+D.N6=new A.Pm(null)
 D.qy=new B.bW(58332,"MaterialIcons",null,!1)
-D.NV=new B.bW(57744,"MaterialIcons",null,!1)
-D.Oq=new B.f0(D.NV,null,null,null,null)
-D.O0=new B.bW(58460,"MaterialIcons",null,!0)
-D.Or=new B.f0(D.O0,null,null,null,null)
+D.NW=new B.bW(57744,"MaterialIcons",null,!1)
+D.Or=new B.f0(D.NW,null,null,null,null)
+D.O1=new B.bW(58460,"MaterialIcons",null,!0)
+D.Os=new B.f0(D.O1,null,null,null,null)
 D.Kc=new B.vC(2,null)
-D.ZW=new B.ca(16,16,D.Kc,null)
-D.a1Z=new B.e2("Could not open the job board link.",null,null,null,null,null,null)
-D.a_d=new B.nd(D.a1Z,null,null,null,null,null,null,null,null,null,null,null,null,C.lc,!1,null,null,null,C.C,null)
-D.a1O=new B.e2("Job board link copied to clipboard.",null,null,null,null,null,null)
-D.a_f=new B.nd(D.a1O,null,null,null,null,null,null,null,null,null,null,null,null,C.lc,!1,null,null,null,C.C,null)
-D.a_r=new B.pe(3,"drawerButton")
-D.a1P=new B.e2("Copy Link",null,null,null,null,null,null)
-D.a1R=new B.e2("I maintain this Notion board with Flutter roles and relevant opportunities.",null,null,null,null,null,null)
-D.a2_=new B.e2("Flutter Job Board",null,null,null,null,null,null)
+D.ZX=new B.ca(16,16,D.Kc,null)
+D.a2_=new B.e2("Could not open the job board link.",null,null,null,null,null,null)
+D.a_e=new B.nd(D.a2_,null,null,null,null,null,null,null,null,null,null,null,null,C.lc,!1,null,null,null,C.C,null)
+D.a1P=new B.e2("Job board link copied to clipboard.",null,null,null,null,null,null)
+D.a_g=new B.nd(D.a1P,null,null,null,null,null,null,null,null,null,null,null,null,C.lc,!1,null,null,null,C.C,null)
+D.a_s=new B.pe(3,"drawerButton")
+D.a1Q=new B.e2("Copy Link",null,null,null,null,null,null)
+D.a1S=new B.e2("I maintain this Notion board with Flutter roles and relevant opportunities.",null,null,null,null,null,null)
+D.a20=new B.e2("Flutter Job Board",null,null,null,null,null,null)
 D.nN=new B.c7(5,"scrolledUnder")
 D.ki=new A.L5(0,"leading")
 D.kj=new A.L5(1,"middle")
 D.kk=new A.L5(2,"trailing")})();(function lazyInitializers(){var x=a.lazyFinal
 x($,"bfS","aK1",()=>B.dP("https://piedcipher.notion.site/Flutter-Job-Board-3766addaed67807aa6e8dee0cb5fdb92",0,null))})()};
-(a=>{a["xAgrpS+vE/BT5RcwImqON0u2k2s="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["k+5XBpTXwT3XxYWZX2olXO9gnpU="]=a.current})($__dart_deferred_initializers__);
