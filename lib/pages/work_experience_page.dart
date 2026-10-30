@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:get_it/get_it.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:page_flip/page_flip.dart';
 import 'package:tirth_today/layouts/notebook_layout.dart';
 import 'package:tirth_today/utils/constants.dart';
@@ -111,7 +110,11 @@ class WorkExperiencePage extends StatelessWidget {
                           subtitle: "${item["company"]} • ${item["duration"]}",
                           description: item["description"]!,
                           colorIndex: index - 1,
-                          color: index == 0 ? Colors.teal.shade100 : null,
+                          color: index == 0
+                              ? (Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.teal.shade900
+                                    : Colors.teal.shade100)
+                              : null,
                         ),
                       );
                     },
@@ -162,14 +165,24 @@ class StickyNoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
-    final stickyColors = [
-      Colors.deepOrange.shade100,
-      Colors.blue.shade100,
-      Colors.amber.shade100,
-      Colors.green.shade100,
-      Colors.indigo.shade100,
-      Colors.purple.shade100,
-    ];
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final stickyColors = isDark
+        ? [
+            Colors.deepOrange.shade900,
+            Colors.blue.shade900,
+            Colors.amber.shade900,
+            Colors.green.shade900,
+            Colors.indigo.shade900,
+            Colors.purple.shade900,
+          ]
+        : [
+            Colors.deepOrange.shade100,
+            Colors.blue.shade100,
+            Colors.amber.shade100,
+            Colors.green.shade100,
+            Colors.indigo.shade100,
+            Colors.purple.shade100,
+          ];
 
     final color = this.color ?? stickyColors[colorIndex % stickyColors.length];
     final companyName = subtitle.split(" • ")[0];
@@ -181,9 +194,10 @@ class StickyNoteCard extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         color: color,
+        border: isDark ? Border.all(color: palette.rule) : null,
         borderRadius: BorderRadius.circular(14),
-        boxShadow: const [
-          BoxShadow(color: Colors.black26, offset: Offset(2, 4), blurRadius: 5),
+        boxShadow: [
+          BoxShadow(color: isDark ? Colors.black54 : Colors.black26, offset: Offset(2, 4), blurRadius: 5),
         ],
       ),
       child: Column(
@@ -212,7 +226,7 @@ class StickyNoteCard extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: companyName,
-                      style: GoogleFonts.pangolin().copyWith(
+                      style: const TextStyle(fontFamily: 'Pangolin').copyWith(
                         fontSize: 16,
                         color: palette.ink,
                         decoration: TextDecoration.underline,
@@ -229,7 +243,7 @@ class StickyNoteCard extends StatelessWidget {
                     ),
                     TextSpan(
                       text: " • ${subtitle.split(" • ")[1]}",
-                      style: GoogleFonts.pangolin().copyWith(
+                      style: const TextStyle(fontFamily: 'Pangolin').copyWith(
                         fontSize: 16,
                         color: palette.ink,
                       ),

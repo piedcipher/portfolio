@@ -11,7 +11,6 @@ dependencies:
     sdk: flutter
   url_launcher:
   font_awesome_flutter:
-  google_fonts:
   video_player:
   page_flip:
   just_audio:
@@ -29,6 +28,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Pangolin
+      fonts:
+        - asset: assets/fonts/Pangolin-Regular.ttf
   assets:
     - 'assets/'
     - 'assets/Art/'
