@@ -87,8 +87,35 @@
       titleFrame = (titleFrame + 1) % titleFrames.length;
     }, 700);
   </script>
+  <style>
+    body { margin: 0; background: #F3EEFB; }
+    @media (prefers-color-scheme: dark) { body { background: #171923; } }
+    #splash {
+      position: fixed; inset: 0; display: flex;
+      align-items: center; justify-content: center; z-index: -1;
+    }
+    #splash i {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 4px solid #0039A6; border-top-color: transparent;
+      animation: spin .8s linear infinite;
+    }
+    @media (prefers-color-scheme: dark) { #splash i { border-color: #B8CCFF; border-top-color: transparent; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
 <body>
+  <div id="splash"><i></i></div>
+  <script>
+    // The splash sits behind the Flutter view, so it is hidden once the view is attached.
+    const removeSplash = () => document.getElementById('splash')?.remove();
+    window.addEventListener('flutter-first-frame', removeSplash, true);
+    new MutationObserver((_, observer) => {
+      if (document.querySelector('flutter-view, flt-glass-pane')) {
+        setTimeout(removeSplash, 500);
+        observer.disconnect();
+      }
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
