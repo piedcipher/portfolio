@@ -92,7 +92,7 @@
     @media (prefers-color-scheme: dark) { body { background: #171923; } }
     #splash {
       position: fixed; inset: 0; display: flex;
-      align-items: center; justify-content: center;
+      align-items: center; justify-content: center; z-index: -1;
     }
     #splash i {
       width: 36px; height: 36px; border-radius: 50%;
@@ -106,9 +106,15 @@
 <body>
   <div id="splash"><i></i></div>
   <script>
-    window.addEventListener('flutter-first-frame', () => {
-      document.getElementById('splash')?.remove();
-    });
+    // The splash sits behind the Flutter view, so it is hidden once the view is attached.
+    const removeSplash = () => document.getElementById('splash')?.remove();
+    window.addEventListener('flutter-first-frame', removeSplash, true);
+    new MutationObserver((_, observer) => {
+      if (document.querySelector('flutter-view, flt-glass-pane')) {
+        setTimeout(removeSplash, 500);
+        observer.disconnect();
+      }
+    }).observe(document.documentElement, { childList: true, subtree: true });
   </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
