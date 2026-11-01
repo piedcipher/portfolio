@@ -296,6 +296,8 @@ class _NatrajState extends State<Natraj> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -368,8 +370,10 @@ class _NatrajState extends State<Natraj> with SingleTickerProviderStateMixin {
         ),
         ClipPath(
           clipper: InkClipper(),
-          child: const DecoratedBox(
-            decoration: BoxDecoration(color: Color(0xFF141519)),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: isDarkTheme ? Colors.white : const Color(0xFF141519),
+            ),
             child: SizedBox(height: 30, width: 15),
           ),
         ),
