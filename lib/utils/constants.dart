@@ -103,8 +103,8 @@ class AppPalette extends ThemeExtension<AppPalette> {
     paper: Color(0xFF171923),
     margin: Color(0xFFB76572),
     rule: Color(0x26FFFFFF),
-    ink: Color(0xFFB8CCFF),
-    mutedInk: Color(0xFFD4DEFF),
+    ink: Color(0xFFE8F0FF),
+    mutedInk: Color(0xFFF5F7FF),
     surface: Color(0xE6262934),
   );
 
