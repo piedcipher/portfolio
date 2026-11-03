@@ -100,7 +100,7 @@ this.d=e
 this.a=f},
 aZ_(){return new B.qj(null)},
 aZ0(){var x,w,v,u=A.o(y.R,y.a)
-for(x=0;x<43;++x){w=D.RH[x]
+for(x=0;x<43;++x){w=D.RF[x]
 v=A.aD("-\\d+\\.(?:jpg|mp4)$",!0,!1,!1)
 J.dt(u.be(A.aVw(w,v,"",0),new B.a6o()),w)}return u},
 qj:function qj(d){this.a=d},
@@ -431,15 +431,15 @@ l.toString
 x=B.aZ0()
 w=l.d
 v=y.p
-u=A.c([new A.tD(D.MR,new B.G0(A.jh(A.c([A.eF(m,m,E.lS,m,m,m,new B.a6p(d),m,m,m,"Back"),E.nc,A.qX(A.bW("Animals",m,A.cO(m,m,w,m,m,m,m,m,m,m,m,36,m,m,C.c0,m,m,!0,m,m,m,m,m,m,m,m),m),1)],v),C.a8,C.a_,C.ap,0,m),m),m)],v)
+u=A.c([new A.tD(D.MP,new B.G0(A.jh(A.c([A.eF(m,m,E.lS,m,m,m,new B.a6p(d),m,m,m,"Back"),E.nc,A.qX(A.bW("Animals",m,A.cO(m,m,w,m,m,m,m,m,m,m,m,36,m,m,C.c0,m,m,!0,m,m,m,m,m,m,m,m),m),1)],v),C.a8,C.a_,C.ap,0,m),m),m)],v)
 for(x=new A.eK(x,A.j(x).h("eK<1,2>")).ga4(0),t=l.e;x.A();){s=x.d
 r=s.a
-q=A.bW(r==="Tea"||r==="Eight"||r==="C"?"\ud83d\udc31":"\ud83d\udc36",m,D.a0R,m)
+q=A.bW(r==="Tea"||r==="Eight"||r==="C"?"\ud83d\udc31":"\ud83d\udc36",m,D.a0O,m)
 r=A.bW(r,m,new A.B(!0,w,m,m,m,m,24,C.c0,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m),m)
 p=s.b
 o=J.b1(p)
 n=o.gG(p)
-C.c.O(u,A.c([new A.tD(D.MQ,new B.G0(A.jh(A.c([q,D.Cq,r,D.Cq,A.bW(""+n+" photos",m,new A.B(!0,t,m,m,m,m,14,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m),m)],v),C.a8,C.a_,C.ap,0,m),m),m),new A.tD(C.pT,new B.Uq(D.Jq,new A.Un(new B.a6q(s),o.gG(p),!0,!0,!0,m),m),m)],v))}return A.k4(m,l.a,A.tl(!0,new B.Oc(u,C.b1,!1,m,m,C.km,m,!1,m,0,m,m,m,C.ng,C.an,m,m,C.B,C.ao,m),C.a2,!0),m)}}
+C.c.O(u,A.c([new A.tD(D.MO,new B.G0(A.jh(A.c([q,D.Cq,r,D.Cq,A.bW(""+n+" photos",m,new A.B(!0,t,m,m,m,m,14,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m),m)],v),C.a8,C.a_,C.ap,0,m),m),m),new A.tD(C.pT,new B.Uq(D.Jp,new A.Un(new B.a6q(s),o.gG(p),!0,!0,!0,m),m),m)],v))}return A.k4(m,l.a,A.tl(!0,new B.Oc(u,C.b1,!1,m,m,C.km,m,!1,m,0,m,m,m,C.ng,C.an,m,m,C.B,C.ao,m),C.a2,!0),m)}}
 B.u1.prototype={
 af(){return new B.Hq()}}
 B.Hq.prototype={
@@ -470,13 +470,13 @@ if(!C.d.hj(t.toLowerCase(),".mp4"))return H.aKj("assets/animals_assets/"+t,e,u,C
 if(d==null){t=v.c
 t.toString
 t=y.W.a(A.W(t).c.j(0,A.b5(y.N))).e
-return A.ip(!1,C.N,!0,u,A.Qm(!1,!0,D.JY,u,!0,u,u,u,u,u,u,u,u,u,v.gar2(),u,u,u,u,u,u,u),C.x,t,0,u,u,u,u,u,C.cA)}t=d.a
+return A.ip(!1,C.N,!0,u,A.Qm(!1,!0,D.JX,u,!0,u,u,u,u,u,u,u,u,u,v.gar2(),u,u,u,u,u,u,u),C.x,t,0,u,u,u,u,u,C.cA)}t=d.a
 if(!t.ay)return C.dP
 x=t.at
-x=A.fy(new F.yj(d,u),x.b,x.a)
+x=A.f9(new F.yj(d,u),x.b,x.a)
 t=t.f?"Pause video":"Play video"
 w=A.rh(u,C.Z,u,u,u,u,u,u,u,u,u,u,u,u,u,u,u)
-return A.dM(C.b0,A.c([new B.Pn(C.eQ,x,u),A.t6(6,A.eF(C.j,u,A.ob(d.a.f?D.O1:D.O2,u,u,u),u,u,u,new B.auM(v,d),u,u,w,t),u,u,u,6,u,u)],y.p),C.B,C.ex)}}
+return A.dM(C.b0,A.c([new B.Pn(C.eQ,x,u),A.t6(6,A.eF(C.j,u,A.ob(d.a.f?D.O_:D.O0,u,u,u),u,u,u,new B.auM(v,d),u,u,w,t),u,u,u,6,u,u)],y.p),C.B,C.ex)}}
 var z=a.updateTypes(["kb?(iu,h)","u1(R,k)","a4<~>()"])
 B.amS.prototype={
 $2(d,e){return this.a.uS(d,e)},
@@ -507,7 +507,7 @@ $S:0};(function installTearOffs(){var x=a._instance_2u,w=a._instance_0u
 x(B.EI.prototype,"ganG","VM",0)
 w(B.Hq.prototype,"gar2","pb",2)})();(function inheritance(){var x=a.mixinHard,w=a.mixin,v=a.inherit,u=a.inheritMany
 v(B.EI,A.oT)
-u(A.i9,[B.amS,B.a6q])
+u(A.i8,[B.amS,B.a6q])
 v(B.a1m,A.d6)
 v(B.a1n,B.a1m)
 v(B.Tb,B.a1n)
@@ -528,15 +528,15 @@ x(B.a1m,A.ay)
 w(B.a1n,A.T8)})()
 A.iM(b.typeUniverse,JSON.parse('{"EI":{"C":[],"ay":["C"],"A":[],"ag":[]},"Tb":{"d6":[],"ay":["C"],"A":[],"ag":[]},"Tc":{"d6":[],"ay":["C"],"A":[],"ag":[]},"xG":{"fW":[],"ea":["C"],"jU":[],"cC":[]},"T7":{"oU":[],"d6":[],"aj":["C","fW"],"A":[],"ag":[],"aj.1":"fW","aj.0":"C"},"Pn":{"aL":[],"al":[],"e":[]},"G0":{"aL":[],"al":[],"e":[]},"Oc":{"ae":[],"e":[]},"Uq":{"n4":[],"al":[],"e":[]},"u1":{"U":[],"e":[]},"qj":{"ae":[],"e":[]},"Hq":{"Z":["u1"]}}'))
 var y=(function rtii(){var x=A.V
-return{N:x("e7"),k:x("aa"),v:x("d9"),s:x("v<w>"),p:x("v<e>"),a:x("S<w>"),l:x("fu"),x:x("C"),S:x("li"),w:x("xG"),F:x("tC"),D:x("fW"),g:x("k6"),R:x("w"),q:x("k"),W:x("e7?"),H:x("~")}})();(function constants(){var x=a.makeConstList
-D.Jq=new B.ar2()
-D.Ot=new A.f0(G.qu,52,C.j,null,null)
-D.JY=new A.hp(C.G,null,null,D.Ot,null)
-D.MQ=new A.aw(24,0,24,10)
-D.MR=new A.aw(24,32,24,24)
-D.O1=new A.bV(58492,"MaterialIcons",null,!1)
-D.O2=new A.bV(58571,"MaterialIcons",null,!1)
-D.RH=x(["Black-Panther-1.jpg","Black-Panther-2.jpg","Blr-White-1.jpg","C-1.mp4","Chansad-Red-1.jpg","Chansad-Red-2.jpg","Eight-1.jpg","Furry-White-1.jpg","Furry-White-2.jpg","Furry-White-3.mp4","Healthy-White-1.mp4","Home-1.jpg","Home-2.jpg","Home-3.jpg","Home-4.jpg","Jodhpur-Red-1.jpg","Jodhpur-Red-2.jpg","Jodhpur-Red-3.mp4","Karnavati-1.jpg","Nini-1.jpg","Nini-2.jpg","Nini-3.jpg","Nini-4.jpg","Nini-5.jpg","Nini-6.jpg","Ocd-1.jpg","Ocd-2.jpg","Ocd-3.jpg","Ocd-4.jpg","Ocd-5.jpg","Sbr-1.jpg","Sbr-2.jpg","Sbr-3.jpg","Supra-1.jpg","Supra-2.jpg","Supra-3.jpg","Supra-4.jpg","Supra-5.mp4","Supra-6.jpg","Supreme-1.jpg","Tea-1.jpg","Tea-2.jpg","Vadu-1.jpg"],y.s)
-D.Cq=new A.ca(8,null,null,null)
-D.a0R=new A.B(!0,null,null,null,null,null,24,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)})()};
-(a=>{a["eu4iJjq8xA4N1JUC5f/1BXuSrME="]=a.current})($__dart_deferred_initializers__);
+return{N:x("e7"),k:x("aa"),v:x("d9"),s:x("v<w>"),p:x("v<e>"),a:x("S<w>"),l:x("fw"),x:x("C"),S:x("li"),w:x("xG"),F:x("tC"),D:x("fW"),g:x("k6"),R:x("w"),q:x("k"),W:x("e7?"),H:x("~")}})();(function constants(){var x=a.makeConstList
+D.Jp=new B.ar2()
+D.Or=new A.f0(G.qu,52,C.j,null,null)
+D.JX=new A.hp(C.G,null,null,D.Or,null)
+D.MO=new A.aw(24,0,24,10)
+D.MP=new A.aw(24,32,24,24)
+D.O_=new A.bV(58492,"MaterialIcons",null,!1)
+D.O0=new A.bV(58571,"MaterialIcons",null,!1)
+D.RF=x(["Black-Panther-1.jpg","Black-Panther-2.jpg","Blr-White-1.jpg","C-1.mp4","Chansad-Red-1.jpg","Chansad-Red-2.jpg","Eight-1.jpg","Furry-White-1.jpg","Furry-White-2.jpg","Furry-White-3.mp4","Healthy-White-1.mp4","Home-1.jpg","Home-2.jpg","Home-3.jpg","Home-4.jpg","Jodhpur-Red-1.jpg","Jodhpur-Red-2.jpg","Jodhpur-Red-3.mp4","Karnavati-1.jpg","Nini-1.jpg","Nini-2.jpg","Nini-3.jpg","Nini-4.jpg","Nini-5.jpg","Nini-6.jpg","Ocd-1.jpg","Ocd-2.jpg","Ocd-3.jpg","Ocd-4.jpg","Ocd-5.jpg","Sbr-1.jpg","Sbr-2.jpg","Sbr-3.jpg","Supra-1.jpg","Supra-2.jpg","Supra-3.jpg","Supra-4.jpg","Supra-5.mp4","Supra-6.jpg","Supreme-1.jpg","Tea-1.jpg","Tea-2.jpg","Vadu-1.jpg"],y.s)
+D.Cq=new A.cb(8,null,null,null)
+D.a0O=new A.B(!0,null,null,null,null,null,24,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)})()};
+(a=>{a["DQPs1LWQz2VpR9XpOlX74PD8L6U="]=a.current})($__dart_deferred_initializers__);
