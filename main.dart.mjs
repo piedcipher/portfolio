@@ -137,7 +137,7 @@ class CompiledApp {
       CJ: () => new XMLHttpRequest(),
       CK: (x0,x1) => { x0.scrollLeft = x1 },
       CL: (x0,x1,x2) => x0.addEventListener(x1,x2),
-      D: Function.prototype.call.bind(String.prototype.indexOf),
+      D: Function.prototype.call.bind(BigInt.prototype.toString),
       DB: (jsArray, jsArrayOffset, wasmArray, wasmArrayOffset, length) => {
         const getValue = dartInstance.exports.$wasmI32ArrayGet;
         for (let i = 0; i < length; i++) {
@@ -203,7 +203,7 @@ class CompiledApp {
       GJ: (wasmFunction,f) => finalizeWrapper(f, function(x0) { return wasmFunction(f,arguments.length,x0) }),
       GK: (x0,x1) => x0.getContext(x1),
       GL: (wasmFunction,f) => finalizeWrapper(f, function(x0) { return wasmFunction(f,arguments.length,x0) }),
-      H: (s, p, i) => s.lastIndexOf(p, i),
+      H: Function.prototype.call.bind(Number.prototype.toString),
       HB: x0 => new Float64Array(x0),
       HC: x0 => x0.remove(),
       HD: x0 => x0.clientY,
@@ -215,7 +215,7 @@ class CompiledApp {
       HJ: x0 => x0.preventDefault(),
       HK: (x0,x1) => { x0.height = x1 },
       HL: (wasmFunction,f) => finalizeWrapper(f, function(x0) { return wasmFunction(f,arguments.length,x0) }),
-      I: Function.prototype.call.bind(Number.prototype.toString),
+      I: Function.prototype.call.bind(String.prototype.indexOf),
       IB: (jsArray, jsArrayOffset, wasmArray, wasmArrayOffset, length) => {
         const getValue = dartInstance.exports.$wasmF64ArrayGet;
         for (let i = 0; i < length; i++) {
@@ -232,7 +232,7 @@ class CompiledApp {
       IJ: x0 => x0.createRange(),
       IK: (x0,x1) => { x0.width = x1 },
       IL: (wasmFunction,f) => finalizeWrapper(f, function(x0) { return wasmFunction(f,arguments.length,x0) }),
-      J: Function.prototype.call.bind(BigInt.prototype.toString),
+      J: (s, p, i) => s.lastIndexOf(p, i),
       JB: x0 => new ArrayBuffer(x0),
       JC: (x0,x1) => x0.append(x1),
       JD: (x0,x1,x2) => x0.addEventListener(x1,x2),
