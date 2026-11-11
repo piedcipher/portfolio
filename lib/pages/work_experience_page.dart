@@ -18,7 +18,7 @@ class WorkExperiencePage extends StatelessWidget {
         "company": "Self Employed",
         "duration": "May 2026 - Present",
         "description":
-            "Built a static website for a PTFE manufacturer and set up a blog for my own site. Contributed to the open source Flutter SDK and added Gujarati translations to ente.io. I also took a short break during this period and traveled to Hyderabad and Goa.",
+            "As a self-employed developer, built websites for a PTFE manufacturer and my sisters' bakery and crochet businesses. I also set up a blog for my own site, contributed to the open-source Flutter SDK, and added Gujarati translations to ente.io. I took a short break during this period and traveled to Hyderabad and Goa.",
       },
       {
         "role": "Developer Support Engineer",
@@ -153,6 +153,14 @@ class StickyNoteCard extends StatelessWidget {
     "Aubergine Solutions": "https://aubergine.co",
   };
 
+  final Map<String, Map<String, String>> projectUrls = {
+    "Self Employed": {
+      "Teclon Polymer": "https://teclon-polymer.piedcipher-dev.workers.dev/",
+      "S Delights": "https://s-delights.netlify.app/",
+      "Rachana Crocheting": "https://rachana-crocheting.netlify.app/",
+    },
+  };
+
   final Map<String, List<String>> companyLogos = {
     "Nevercode HQ / Codemagic": [
       "https://avatars.githubusercontent.com/u/31367575?s=280&v=4",
@@ -187,6 +195,7 @@ class StickyNoteCard extends StatelessWidget {
     final color = this.color ?? stickyColors[colorIndex % stickyColors.length];
     final companyName = subtitle.split(" • ")[0];
     final companyUrl = companyUrls[companyName];
+    final projects = projectUrls[companyName] ?? const <String, String>{};
 
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
@@ -197,7 +206,11 @@ class StickyNoteCard extends StatelessWidget {
         border: isDark ? Border.all(color: palette.rule) : null,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
-          BoxShadow(color: isDark ? Colors.black54 : Colors.black26, offset: Offset(2, 4), blurRadius: 5),
+          BoxShadow(
+            color: isDark ? Colors.black54 : Colors.black26,
+            offset: Offset(2, 4),
+            blurRadius: 5,
+          ),
         ],
       ),
       child: Column(
@@ -243,10 +256,9 @@ class StickyNoteCard extends StatelessWidget {
                     ),
                     TextSpan(
                       text: " • ${subtitle.split(" • ")[1]}",
-                      style: const TextStyle(fontFamily: 'Pangolin').copyWith(
-                        fontSize: 16,
-                        color: palette.ink,
-                      ),
+                      style: const TextStyle(
+                        fontFamily: 'Pangolin',
+                      ).copyWith(fontSize: 16, color: palette.ink),
                     ),
                   ],
                 ),
@@ -258,6 +270,41 @@ class StickyNoteCard extends StatelessWidget {
             description,
             style: TextStyle(fontSize: 16, height: 1.4, color: palette.ink),
           ),
+          if (projects.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            Text(
+              "Projects",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: palette.ink,
+              ),
+            ),
+            Wrap(
+              spacing: 12,
+              children: projects.entries
+                  .map(
+                    (project) => TextButton(
+                      onPressed: () async {
+                        await launchUrl(Uri.parse(project.value));
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: Size.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: Text(
+                        project.key,
+                        style: TextStyle(
+                          color: palette.ink,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ],
         ],
       ),
     );
