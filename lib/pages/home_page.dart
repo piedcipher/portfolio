@@ -238,6 +238,33 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   OutlinedButton.icon(
+                    onPressed: () async {
+                      final opened = await launchUrl(
+                        Uri.parse(
+                          'https://github.com/piedcipher/flutter-interview-questions',
+                        ),
+                        mode: LaunchMode.externalApplication,
+                      );
+                      if (!opened && context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Could not open Flutter Interview Questions.',
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    icon: const Icon(Icons.open_in_new),
+                    label: Text(
+                      'Flutter Interview Questions',
+                      style: TextStyle(color: palette.ink),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(color: palette.ink),
+                    ),
+                  ),
+                  OutlinedButton.icon(
                     onPressed: () {
                       Navigator.of(context).pushNamed('/animals');
                     },
