@@ -179,11 +179,61 @@ List<Widget> _buildContentWidgets(List<_BlogContentBlock> contentBlocks) {
           ? _YoutubeEmbed(videoId: block.videoId!)
           : block.twitterUrl != null
           ? _TwitterEmbed(text: block.twitterText!, url: block.twitterUrl!)
+          : block.gallery != null
+          ? _BlogPhotoGallery(images: block.gallery!)
           : _BlogMarkdown(markdown: block.markdown!),
     );
   }
 
   return widgets;
+}
+
+class _BlogPhotoGallery extends StatelessWidget {
+  const _BlogPhotoGallery({required this.images});
+
+  final List<_GalleryImage> images;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final columnCount = constraints.maxWidth >= 900
+            ? 3
+            : constraints.maxWidth >= 350
+            ? 2
+            : 1;
+        return Row(
+          key: const ValueKey('blog-photo-gallery'),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            for (var column = 0; column < columnCount; column++) ...[
+              if (column > 0) const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  children: [
+                    for (
+                      var index = column;
+                      index < images.length;
+                      index += columnCount
+                    )
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: Image.asset(
+                          'assets/${images[index].path}',
+                          width: double.infinity,
+                          fit: BoxFit.fitWidth,
+                          semanticLabel: images[index].label,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ],
+          ],
+        );
+      },
+    );
+  }
 }
 
 class _BlogMarkdown extends StatelessWidget {
@@ -431,6 +481,7 @@ class _BlogContentBlock {
       isYoutube = false,
       twitterUrl = null,
       twitterText = null,
+      gallery = null,
       detailsTitle = null,
       isDetailsEnd = false;
 
@@ -439,6 +490,7 @@ class _BlogContentBlock {
       isYoutube = true,
       twitterUrl = null,
       twitterText = null,
+      gallery = null,
       detailsTitle = null,
       isDetailsEnd = false;
 
@@ -448,8 +500,18 @@ class _BlogContentBlock {
   }) : markdown = null,
        videoId = null,
        isYoutube = false,
+       gallery = null,
        detailsTitle = null,
        isDetailsEnd = false;
+
+  const _BlogContentBlock.gallery(this.gallery)
+    : markdown = null,
+      videoId = null,
+      isYoutube = false,
+      twitterUrl = null,
+      twitterText = null,
+      detailsTitle = null,
+      isDetailsEnd = false;
 
   const _BlogContentBlock.detailsStart(this.detailsTitle)
     : markdown = null,
@@ -457,6 +519,7 @@ class _BlogContentBlock {
       isYoutube = false,
       twitterUrl = null,
       twitterText = null,
+      gallery = null,
       isDetailsEnd = false;
 
   const _BlogContentBlock.detailsEnd()
@@ -465,6 +528,7 @@ class _BlogContentBlock {
       isYoutube = false,
       twitterUrl = null,
       twitterText = null,
+      gallery = null,
       detailsTitle = null,
       isDetailsEnd = true;
 
@@ -473,8 +537,16 @@ class _BlogContentBlock {
   final bool isYoutube;
   final String? twitterUrl;
   final String? twitterText;
+  final List<_GalleryImage>? gallery;
   final String? detailsTitle;
   final bool isDetailsEnd;
+}
+
+class _GalleryImage {
+  const _GalleryImage({required this.label, required this.path});
+
+  final String label;
+  final String path;
 }
 
 List<_BlogContentBlock> _splitContentBlocks(String markdown) {
@@ -491,8 +563,33 @@ List<_BlogContentBlock> _splitContentBlocks(String markdown) {
     buffer.clear();
   }
 
-  for (final line in lines) {
+  for (var index = 0; index < lines.length; index++) {
+    final line = lines[index];
     final trimmedLine = line.trim();
+
+    if (trimmedLine == '<!-- gallery -->') {
+      final end = lines.indexOf('<!-- /gallery -->', index + 1);
+      if (end != -1) {
+        final images = <_GalleryImage>[];
+        final imagePattern = RegExp(r'^!\[([^\]]*)\]\((blogs_assets/[^)]+)\)$');
+        for (final galleryLine in lines.sublist(index + 1, end)) {
+          final match = imagePattern.firstMatch(galleryLine.trim());
+          if (match == null) {
+            images.clear();
+            break;
+          }
+          images.add(
+            _GalleryImage(label: match.group(1)!, path: match.group(2)!),
+          );
+        }
+        if (images.isNotEmpty) {
+          flushMarkdown();
+          blocks.add(_BlogContentBlock.gallery(images));
+          index = end;
+          continue;
+        }
+      }
+    }
 
     if (_isDetailsOpen(trimmedLine)) {
       flushMarkdown();
