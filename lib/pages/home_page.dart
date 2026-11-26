@@ -7,10 +7,17 @@ import 'package:tirth_today/utils/constants.dart';
 import 'package:tirth_today/widgets/deferred_art_video_player.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.onToggleTheme});
 
   final VoidCallback onToggleTheme;
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Widget _buildResponsiveButton({
     required VoidCallback onPressed,
@@ -29,6 +36,131 @@ class HomePage extends StatelessWidget {
           horizontal: isMobile ? 8 : 16,
           vertical: isMobile ? 8 : 10,
         ),
+      ),
+    );
+  }
+
+  Widget _buildDrawerItem({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+    required AppPalette palette,
+  }) {
+    return ListTile(
+      leading: Icon(icon, color: palette.ink),
+      title: Text(title, style: TextStyle(color: palette.ink)),
+      onTap: () {
+        Navigator.pop(context);
+        onTap();
+      },
+    );
+  }
+
+  Widget _buildDrawerDivider({
+    required IconData icon,
+    required String title,
+    required Future<void> Function() onTap,
+    required AppPalette palette,
+  }) {
+    return ListTile(
+      leading: Icon(icon, color: palette.ink),
+      title: Text(title, style: TextStyle(color: palette.ink)),
+      onTap: () async {
+        Navigator.pop(context);
+        await onTap();
+      },
+    );
+  }
+
+  Widget _buildNavigationDrawer(
+    BuildContext context,
+    AppPalette palette,
+    bool isDarkTheme,
+  ) {
+    return Drawer(
+      backgroundColor: palette.paper,
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(color: palette.ink),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  Data.name,
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: palette.paper,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  Data.tagline,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 12, color: palette.paper),
+                ),
+              ],
+            ),
+          ),
+          _buildDrawerItem(
+            icon: isDarkTheme
+                ? Icons.light_mode_outlined
+                : Icons.dark_mode_outlined,
+            title: isDarkTheme ? 'Light theme' : 'Dark theme',
+            onTap: widget.onToggleTheme,
+            palette: palette,
+          ),
+          const Divider(),
+          _buildDrawerItem(
+            icon: Icons.article_outlined,
+            title: 'Blog',
+            onTap: () => Navigator.of(context).pushNamed('/blog'),
+            palette: palette,
+          ),
+          _buildDrawerItem(
+            icon: Icons.work_outline,
+            title: 'Job Board',
+            onTap: () => Navigator.of(context).pushNamed('/flutter-job-board'),
+            palette: palette,
+          ),
+          _buildDrawerDivider(
+            icon: Icons.code_outlined,
+            title: 'Flutter Interview Questions',
+            onTap: () async {
+              final opened = await launchUrl(
+                Uri.parse(
+                  'https://github.com/piedcipher/flutter-interview-questions',
+                ),
+                mode: LaunchMode.externalApplication,
+              );
+              if (!opened && context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'Could not open Flutter Interview Questions.',
+                    ),
+                  ),
+                );
+              }
+            },
+            palette: palette,
+          ),
+          _buildDrawerItem(
+            icon: Icons.pets_outlined,
+            title: 'Animals',
+            onTap: () => Navigator.of(context).pushNamed('/animals'),
+            palette: palette,
+          ),
+          const Divider(),
+          _buildDrawerItem(
+            icon: Icons.mail_outline,
+            title: 'Contact Me',
+            onTap: () => _showContactDialog(context),
+            palette: palette,
+          ),
+        ],
       ),
     );
   }
@@ -73,6 +205,7 @@ class HomePage extends StatelessWidget {
     final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
+      key: _scaffoldKey,
       floatingActionButton: FloatingActionButton.extended(
         heroTag: 'home_next_page_fab',
         onPressed: () {
@@ -84,6 +217,7 @@ class HomePage extends StatelessWidget {
         label: Text('Next Page'),
         tooltip: 'Page can be swiped as well',
       ),
+      drawer: _buildNavigationDrawer(context, palette, isDarkTheme),
       backgroundColor: palette.paper,
       body: Center(
         child: Stack(
@@ -226,15 +360,36 @@ class HomePage extends StatelessWidget {
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   final isMobile = constraints.maxWidth < 768;
-                  final buttonSpacing = isMobile ? 6.0 : 8.0;
-                  
+
+                  if (isMobile) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.menu, color: palette.ink),
+                          onPressed: () =>
+                              _scaffoldKey.currentState?.openDrawer(),
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            isDarkTheme
+                                ? Icons.light_mode_outlined
+                                : Icons.dark_mode_outlined,
+                            color: palette.ink,
+                          ),
+                          onPressed: widget.onToggleTheme,
+                        ),
+                      ],
+                    );
+                  }
+
                   return Wrap(
                     alignment: WrapAlignment.center,
-                    spacing: buttonSpacing,
-                    runSpacing: buttonSpacing,
+                    spacing: 8.0,
+                    runSpacing: 8.0,
                     children: [
                       _buildResponsiveButton(
-                        onPressed: onToggleTheme,
+                        onPressed: widget.onToggleTheme,
                         icon: Icon(
                           isDarkTheme
                               ? Icons.light_mode_outlined
@@ -242,15 +397,18 @@ class HomePage extends StatelessWidget {
                         ),
                         label: Text(isDarkTheme ? 'Light theme' : 'Dark theme'),
                         palette: palette,
-                        isMobile: isMobile,
+                        isMobile: false,
                       ),
                       _buildResponsiveButton(
                         onPressed: () {
                           Navigator.of(context).pushNamed('/blog');
                         },
-                        label: Text('Blog', style: TextStyle(color: palette.ink)),
+                        label: Text(
+                          'Blog',
+                          style: TextStyle(color: palette.ink),
+                        ),
                         palette: palette,
-                        isMobile: isMobile,
+                        isMobile: false,
                       ),
                       _buildResponsiveButton(
                         onPressed: () {
@@ -261,7 +419,7 @@ class HomePage extends StatelessWidget {
                           style: TextStyle(color: palette.ink),
                         ),
                         palette: palette,
-                        isMobile: isMobile,
+                        isMobile: false,
                       ),
                       _buildResponsiveButton(
                         onPressed: () async {
@@ -281,15 +439,13 @@ class HomePage extends StatelessWidget {
                             );
                           }
                         },
-                        icon: isMobile 
-                          ? const Icon(Icons.open_in_new, size: 18)
-                          : const Icon(Icons.open_in_new),
+                        icon: const Icon(Icons.open_in_new),
                         label: Text(
-                          isMobile ? 'Interview Q' : 'Flutter Interview Questions',
+                          'Flutter Interview Questions',
                           style: TextStyle(color: palette.ink),
                         ),
                         palette: palette,
-                        isMobile: isMobile,
+                        isMobile: false,
                       ),
                       _buildResponsiveButton(
                         onPressed: () {
@@ -300,22 +456,15 @@ class HomePage extends StatelessWidget {
                           style: TextStyle(color: palette.ink),
                         ),
                         palette: palette,
-                        isMobile: isMobile,
+                        isMobile: false,
                       ),
                       FilledButton.icon(
                         onPressed: () => _showContactDialog(context),
-                        icon: Icon(
-                          Icons.mail_outline,
-                          size: isMobile ? 18 : 24,
-                        ),
-                        label: Text(isMobile ? 'Contact' : 'Contact Me'),
+                        icon: const Icon(Icons.mail_outline),
+                        label: const Text('Contact Me'),
                         style: FilledButton.styleFrom(
                           backgroundColor: palette.ink,
                           foregroundColor: palette.paper,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: isMobile ? 8 : 16,
-                            vertical: isMobile ? 8 : 10,
-                          ),
                         ),
                       ),
                     ],
