@@ -25,18 +25,7 @@ jobs:
           cache: true
       
       - run: flutter pub get
-      - run: flutter test --coverage
-      
-      - name: Generate coverage badge
-        run: |
-          dart pub global activate coverage
-          dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --report-on=lib
-      
-      - name: Upload coverage
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage/lcov.info
+      - run: flutter test
 
   build:
     needs: test
