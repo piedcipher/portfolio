@@ -26,5 +26,3 @@ flutter test
 
 ### Test Files
 - **`test/home_page_test.dart`** - HomePage widget tests for title, tagline, theme toggle, and social media rendering
-- **`test/mobile_navigation_test.dart`** - Mobile responsiveness tests for hamburger menu and drawer navigation
-- **`test/blog_photo_gallery_test.dart`** - Blog photo gallery responsive layout tests
