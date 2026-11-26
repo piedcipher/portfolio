@@ -12,6 +12,27 @@ class HomePage extends StatelessWidget {
 
   final VoidCallback onToggleTheme;
 
+  Widget _buildResponsiveButton({
+    required VoidCallback onPressed,
+    Widget? icon,
+    required Widget label,
+    required AppPalette palette,
+    required bool isMobile,
+  }) {
+    return OutlinedButton.icon(
+      onPressed: onPressed,
+      icon: icon,
+      label: label,
+      style: OutlinedButton.styleFrom(
+        side: BorderSide(color: palette.ink),
+        padding: EdgeInsets.symmetric(
+          horizontal: isMobile ? 8 : 16,
+          vertical: isMobile ? 8 : 10,
+        ),
+      ),
+    );
+  }
+
   Future<void> _showContactDialog(BuildContext context) async {
     final shouldEmail = await showDialog<bool>(
       context: context,
@@ -202,90 +223,104 @@ class HomePage extends StatelessWidget {
               top: 12,
               left: 12,
               right: 12,
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  OutlinedButton.icon(
-                    onPressed: onToggleTheme,
-                    icon: Icon(
-                      isDarkTheme
-                          ? Icons.light_mode_outlined
-                          : Icons.dark_mode_outlined,
-                    ),
-                    label: Text(isDarkTheme ? 'Light theme' : 'Dark theme'),
-                  ),
-                  OutlinedButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/blog');
-                    },
-                    label: Text('Blog', style: TextStyle(color: palette.ink)),
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: palette.ink),
-                    ),
-                  ),
-                  OutlinedButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/flutter-job-board');
-                    },
-                    label: Text(
-                      'Job Board',
-                      style: TextStyle(color: palette.ink),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: palette.ink),
-                    ),
-                  ),
-                  OutlinedButton.icon(
-                    onPressed: () async {
-                      final opened = await launchUrl(
-                        Uri.parse(
-                          'https://github.com/piedcipher/flutter-interview-questions',
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final isMobile = constraints.maxWidth < 768;
+                  final buttonSpacing = isMobile ? 6.0 : 8.0;
+                  
+                  return Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: buttonSpacing,
+                    runSpacing: buttonSpacing,
+                    children: [
+                      _buildResponsiveButton(
+                        onPressed: onToggleTheme,
+                        icon: Icon(
+                          isDarkTheme
+                              ? Icons.light_mode_outlined
+                              : Icons.dark_mode_outlined,
                         ),
-                        mode: LaunchMode.externalApplication,
-                      );
-                      if (!opened && context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Could not open Flutter Interview Questions.',
+                        label: Text(isDarkTheme ? 'Light theme' : 'Dark theme'),
+                        palette: palette,
+                        isMobile: isMobile,
+                      ),
+                      _buildResponsiveButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed('/blog');
+                        },
+                        label: Text('Blog', style: TextStyle(color: palette.ink)),
+                        palette: palette,
+                        isMobile: isMobile,
+                      ),
+                      _buildResponsiveButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed('/flutter-job-board');
+                        },
+                        label: Text(
+                          'Job Board',
+                          style: TextStyle(color: palette.ink),
+                        ),
+                        palette: palette,
+                        isMobile: isMobile,
+                      ),
+                      _buildResponsiveButton(
+                        onPressed: () async {
+                          final opened = await launchUrl(
+                            Uri.parse(
+                              'https://github.com/piedcipher/flutter-interview-questions',
                             ),
+                            mode: LaunchMode.externalApplication,
+                          );
+                          if (!opened && context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Could not open Flutter Interview Questions.',
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                        icon: isMobile 
+                          ? const Icon(Icons.open_in_new, size: 18)
+                          : const Icon(Icons.open_in_new),
+                        label: Text(
+                          isMobile ? 'Interview Q' : 'Flutter Interview Questions',
+                          style: TextStyle(color: palette.ink),
+                        ),
+                        palette: palette,
+                        isMobile: isMobile,
+                      ),
+                      _buildResponsiveButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed('/animals');
+                        },
+                        label: Text(
+                          'Animals',
+                          style: TextStyle(color: palette.ink),
+                        ),
+                        palette: palette,
+                        isMobile: isMobile,
+                      ),
+                      FilledButton.icon(
+                        onPressed: () => _showContactDialog(context),
+                        icon: Icon(
+                          Icons.mail_outline,
+                          size: isMobile ? 18 : 24,
+                        ),
+                        label: Text(isMobile ? 'Contact' : 'Contact Me'),
+                        style: FilledButton.styleFrom(
+                          backgroundColor: palette.ink,
+                          foregroundColor: palette.paper,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: isMobile ? 8 : 16,
+                            vertical: isMobile ? 8 : 10,
                           ),
-                        );
-                      }
-                    },
-                    icon: const Icon(Icons.open_in_new),
-                    label: Text(
-                      'Flutter Interview Questions',
-                      style: TextStyle(color: palette.ink),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: palette.ink),
-                    ),
-                  ),
-                  OutlinedButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/animals');
-                    },
-                    label: Text(
-                      'Animals',
-                      style: TextStyle(color: palette.ink),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: palette.ink),
-                    ),
-                  ),
-                  FilledButton.icon(
-                    onPressed: () => _showContactDialog(context),
-                    icon: const Icon(Icons.mail_outline),
-                    label: const Text('Contact Me'),
-                    style: FilledButton.styleFrom(
-                      backgroundColor: palette.ink,
-                      foregroundColor: palette.paper,
-                    ),
-                  ),
-                ],
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
             Positioned(left: 40, child: const Natraj()),
